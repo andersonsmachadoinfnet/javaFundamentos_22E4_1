@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
 public class TP1 {
+    private static final int TAMANHO = 2;
+    private static String[] alunos;
+    private static float[]  notaAv1;
+    private static float[]  notaAv2;
+
+    public static void varInicializa() {
+        alunos  = new String[TAMANHO];
+        notaAv1 = new float[TAMANHO];
+        notaAv2 = new float[TAMANHO];
+    }
 
     public static void menu() {
         Scanner in = new Scanner(System.in);
@@ -20,6 +30,7 @@ public class TP1 {
     } 
 
     public static void main(String[] args) {
+        varInicializa();
         menu();
         System.out.println("Processamento finalizado!!!"); 
     }
