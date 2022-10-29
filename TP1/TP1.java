@@ -35,6 +35,10 @@ public class TP1 {
                 case "2":
                     menuOpConsultaBoletimAluno(in);
                     break;
+
+                case "3":
+                    menuOpConsultaBoletimTurma();
+                    break;
                 
                 default:
                     break;
@@ -63,6 +67,12 @@ public class TP1 {
     public static void menuOpConsultaBoletimAluno(Scanner in) {
         System.out.print("Informe o código do aluno: ");	
 		alunoRelatorio(in.nextInt());    
+    }
+
+    public static void menuOpConsultaBoletimTurma () {
+        for (int i=0; i<=idx; i++) {
+            alunoRelatorio(i);
+        }
     }
 
     public static String alunoSituacao(float pMedia) {
