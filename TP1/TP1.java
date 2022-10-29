@@ -32,6 +32,10 @@ public class TP1 {
                     menuOpRegistra(in);
                     break;
                 
+                case "2":
+                    menuOpConsultaBoletimAluno(in);
+                    break;
+                
                 default:
                     break;
             }
@@ -54,6 +58,37 @@ public class TP1 {
         } else {
             System.out.println("Nao e possivel registrar novos alunos! Matriz cheia.");
         }   
+    }
+
+    public static void menuOpConsultaBoletimAluno(Scanner in) {
+        System.out.print("Informe o código do aluno: ");	
+		alunoRelatorio(in.nextInt());    
+    }
+
+    public static String alunoSituacao(float pMedia) {
+        if (pMedia<4) {
+            return "Reprovado";
+        } else if (pMedia < 7) {
+            return "Prova Final";
+        } else {
+            return "Aprovado";
+        }
+    }
+
+    public static float alunoCalculaMedia(int pIdx) {
+        return ((notaAv1[pIdx] + notaAv2[pIdx]) / 2);
+    }
+
+    public static void alunoRelatorio(int pIdx) {
+        if (pIdx>-1 && pIdx <= idx) {
+            System.out.println("Nome do Aluno: "+alunos[pIdx]);
+            System.out.println("Nota da AV1  : "+notaAv1[pIdx]);
+            System.out.println("Nota da AV2  : "+notaAv2[pIdx]);
+            System.out.println("Média        : "+alunoCalculaMedia(pIdx));
+            System.out.println("Situação     : "+alunoSituacao(alunoCalculaMedia(pIdx)));
+        } else {
+            System.out.println("Não há aluno no índice informado!");
+        }      
     }
 
     public static void main(String[] args) {
