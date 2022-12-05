@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TP1 {
-    private static final int TAMANHO = 2;
+    private static final int TAMANHO = 100;
     private static int      idx;
     private static String[] alunos;
     private static float[]  notaAv1;
