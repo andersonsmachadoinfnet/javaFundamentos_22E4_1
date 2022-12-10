@@ -21,11 +21,13 @@ public class Prontuario {
 	public String toString() {
 		return
 			String.format("%s%s%s%s%s%s", 
-				/*descricao*/paciente.toString(), Constantes.SEPARADOR,
+				descricao, Constantes.SEPARADOR,
 				web ? "Web": "Loja", Constantes.SEPARADOR,
 				data.format(Constantes.FMT_DATETIME_BR()), Constantes.SEPARADOR
 			);
 	}
+	
+	// Refatorei essa funcao para o pacote model.report: public void imprimir() {}
 	
 	
 	public String getDescricao() {

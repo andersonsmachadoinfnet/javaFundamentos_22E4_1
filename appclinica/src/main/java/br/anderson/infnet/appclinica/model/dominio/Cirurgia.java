@@ -2,11 +2,14 @@ package br.anderson.infnet.appclinica.model.dominio;
 
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
+import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
+import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 
 public class Cirurgia extends Procedimento {
 	private String indicadoPara;
 	
-	public Cirurgia(ProcedimentoTipo pTipo, String pDescricao, float pValor, String pIndicadoPara) {
+	public Cirurgia(ProcedimentoTipo pTipo, String pDescricao, float pValor, String pIndicadoPara) 
+		   throws ValorInvalidoException, DescricaoInvalidaException {
 		super(pTipo, pDescricao, pValor);
 		this.indicadoPara = pIndicadoPara;
 	}
