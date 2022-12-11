@@ -1,5 +1,6 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
+import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
@@ -24,6 +25,18 @@ public class Exame extends Procedimento {
 
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
+	}
+	
+	@Override
+	public String obterLinha() {
+		return super.obterLinha() + Constantes.SEPARADOR +
+				this.resultado + Constantes.CRLF;
+	}
+
+	@Override
+	public void setLinha(String pLinha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

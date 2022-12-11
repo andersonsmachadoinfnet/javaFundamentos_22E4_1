@@ -1,0 +1,5 @@
+C;10/12/2022 21:36;null;ANTONIA LIMA SOUZA;3
+P;Particular;ANTONIA LIMA SOUZA;964.230.710-39;ANTONIA_LIMA_SOUZA9@gmail.com;13/11/1976
+PC;Hérnia umbilical;19.0;tempus,felis.nonnibhplacerat.Nuncadipiscinginterdum,consecteturipsumeu,sollicitudin,
+PE;TGO (AST);568.0;null
+PM;Lidocaína 20mg/mL (2%) sem vasoconstrictor frasco-ampola 20mL – sol.injetável;394.0;quisinaliquetnisi,necinsedPraesenteulaciniasedjusto,velit.amet,Aliquammattislaciniaporttitornisi.tempus,

@@ -3,8 +3,9 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.time.LocalDate;
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
+import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
-public class Paciente {
+public class Paciente implements IArquivoTxt_linha {
 	private PacienteTipo tipo;
 	private       String nome;
 	private       String cpf;
@@ -53,5 +54,31 @@ public class Paciente {
 
 	public PacienteTipo getTipo() {
 		return tipo;
+	}
+
+	@Override
+	public String getPrefixo() {
+		return Constantes.PREFIXO_CLASSE_PACIENTE;
+	}
+
+	@Override
+	public boolean isPrefixo(String pPrefixo) {
+		return getPrefixo().equals(pPrefixo);
+	}
+
+	@Override
+	public String obterLinha() {
+		return this.getPrefixo() + Constantes.SEPARADOR +
+				this.tipo + Constantes.SEPARADOR +
+				this.nome + Constantes.SEPARADOR +
+				this.cpf + Constantes.SEPARADOR +
+				this.email + Constantes.SEPARADOR +
+				this.dtNasc.format(Constantes.FMT_DATE_BR()) + Constantes.CRLF;
+	}
+
+	@Override
+	public void setLinha(String pLinha) {
+		// TODO Auto-generated method stub
+		
 	}
 }

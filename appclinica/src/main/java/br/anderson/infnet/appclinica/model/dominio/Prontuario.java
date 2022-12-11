@@ -1,11 +1,16 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
+import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt;
+import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
-public class Prontuario {
+public class Prontuario implements IArquivoTxt, IArquivoTxt_linha {
 
 	private String descricao;
 	private boolean web;
@@ -64,6 +69,56 @@ public class Prontuario {
 
 	public LocalDateTime getData() {
 		return data;
+	}
+
+	@Override
+	public void lerDoArq(String pNomeDoArq) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void salvarNoArq(String pNomeDoArq) {
+		try {
+			FileWriter fileW = new FileWriter(pNomeDoArq);
+			BufferedWriter escrita = new BufferedWriter(fileW);
+			
+			escrita.write(this.obterLinha());
+			escrita.write(this.paciente.obterLinha());
+			for(Procedimento p : this.procedimentos) {
+				escrita.write(p.obterLinha());
+			}
+			escrita.close();
+			
+		} catch (IOException e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		} 
+		
+	}
+
+	@Override
+	public String getPrefixo() {
+		return Constantes.PREFIXO_CLASSE_PRONTUARIO;
+	}
+
+	@Override
+	public boolean isPrefixo(String pPrefixo) {
+		return getPrefixo().equals(pPrefixo);
+	}
+
+	@Override
+	public String obterLinha() {
+		return this.getPrefixo() + Constantes.SEPARADOR +
+			   this.getData().format(Constantes.FMT_DATETIME_BR()) + Constantes.SEPARADOR +
+			   this.getDescricao() + Constantes.SEPARADOR +
+			   this.getPaciente().getNome() + Constantes.SEPARADOR +
+			   this.getProcedimentos().size() + Constantes.CRLF;
+	}
+
+	@Override
+	public void setLinha(String pLinha) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

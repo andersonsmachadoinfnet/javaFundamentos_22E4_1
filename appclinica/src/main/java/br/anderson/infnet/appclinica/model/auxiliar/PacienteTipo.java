@@ -1,7 +1,16 @@
 package br.anderson.infnet.appclinica.model.auxiliar;
 
 public enum PacienteTipo {
-	PARTICULAR, SUS, UNIMED;
+	PARTICULAR("Particular"), SUS("SUS"), UNIMED("Unimed");
+	private String nome;
+	private PacienteTipo(String pNome) {
+		this.nome = pNome;
+	}
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
 	
 	public float ratio() {
 		if (this==PARTICULAR) { 

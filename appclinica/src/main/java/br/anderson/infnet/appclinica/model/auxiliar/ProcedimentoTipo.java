@@ -12,4 +12,15 @@ public enum ProcedimentoTipo {
 	public String toString() {
 		return nome;
 	}
+	
+	public String getPrefixo() {
+		if (this==CIRURGIA) { 
+			return Constantes.PREFIXO_CLASSE_PROCEDIMENTO_CIRUR;
+		} else if (this==EXAME) {
+			return Constantes.PREFIXO_CLASSE_PROCEDIMENTO_EXAME;
+		} else if (this==MEDICAMENTO) {
+			return Constantes.PREFIXO_CLASSE_PROCEDIMENTO_MEDIC;
+		} else
+			return "";
+	}
 }

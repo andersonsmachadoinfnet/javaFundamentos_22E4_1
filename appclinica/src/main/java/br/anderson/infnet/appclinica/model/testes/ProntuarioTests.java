@@ -9,6 +9,7 @@ import br.anderson.infnet.appclinica.model.dominio.faker.PacienteFaker;
 import br.anderson.infnet.appclinica.model.dominio.faker.ProcedimentoFaker;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
+import br.anderson.infnet.appclinica.model.interfaces.IRelatorio;
 import br.anderson.infnet.appclinica.model.report.ProntuarioReport;
 
 public class ProntuarioTests {
@@ -41,8 +42,10 @@ public class ProntuarioTests {
 		
 		prontuario.setProcedimentos(procedimentos);
 		
-		new ProntuarioReport(prontuario).imprimir();
+		IRelatorio relatorio = new ProntuarioReport(prontuario);
+		relatorio.imprimir();
 		
+		prontuario.salvarNoArq("teste.txt");
 		
 		
 		

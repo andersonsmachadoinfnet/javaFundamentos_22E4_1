@@ -5,8 +5,9 @@ import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
+import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
-public abstract class Procedimento {
+public abstract class Procedimento implements IArquivoTxt_linha  {
 
 	private ProcedimentoTipo tipo;
 	private           String descricao;
@@ -55,5 +56,22 @@ public abstract class Procedimento {
 
 	public float getValor() {
 		return valor;
+	}
+	
+	@Override
+	public String getPrefixo() {
+		return this.tipo.getPrefixo();
+	}
+
+	@Override
+	public boolean isPrefixo(String pPrefixo) {
+		return getPrefixo().equals(pPrefixo);
+	}
+	
+	@Override
+	public String obterLinha() {
+		return this.getPrefixo() + Constantes.SEPARADOR +
+			   this.descricao + Constantes.SEPARADOR +
+			   this.valor;
 	}
 }
