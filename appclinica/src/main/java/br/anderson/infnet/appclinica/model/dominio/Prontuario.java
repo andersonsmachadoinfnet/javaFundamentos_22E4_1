@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
-public class Prontuario implements /*IArquivoTxt,*/ IArquivoTxt_linha {
+public class Prontuario implements IArquivoTxt_linha {
 
 	private String descricao;
 	private boolean web;
@@ -29,7 +29,8 @@ public class Prontuario implements /*IArquivoTxt,*/ IArquivoTxt_linha {
 			);
 	}
 	
-	// Refatorei essa funcao para o pacote model.report: public void imprimir() {}
+	// Refatorei essa funcao para o pacote model.report: 
+	// public void imprimir() {}
 	
 	
 	public String getDescricao() {

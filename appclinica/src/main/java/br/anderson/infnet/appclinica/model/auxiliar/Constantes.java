@@ -13,6 +13,10 @@ public class Constantes {
 	public static final String PREFIXO_CLASSE_PROCEDIMENTO_MEDIC = "PM";
 	public static final String PREFIXO_CLASSE_PROCEDIMENTO_CIRUR = "PC";
 	public static final String CRLF = "\r\n";
+
+	public static final    int TESTE_ARQ_CLASSEMAE_QTD      = 5;
+	public static final String TESTE_ARQ_NOME               = "ArquivoTeste.txt";
+	public static final String TESTE_ARQ_PROCESSADO_PREFIXO = "out_";
 	
 	
 	public static final DateTimeFormatter FMT_DATE_BR() {
