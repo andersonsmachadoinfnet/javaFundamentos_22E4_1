@@ -1,16 +1,13 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
-import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
-public class Prontuario implements IArquivoTxt, IArquivoTxt_linha {
+public class Prontuario implements /*IArquivoTxt,*/ IArquivoTxt_linha {
 
 	private String descricao;
 	private boolean web;
@@ -71,30 +68,30 @@ public class Prontuario implements IArquivoTxt, IArquivoTxt_linha {
 		return data;
 	}
 
-	@Override
-	public void lerDoArq(String pNomeDoArq) {
-		// TODO Auto-generated method stub
+	// @Override
+	// public void lerDoArq(String pNomeDoArq) {
+	// 	// TODO Auto-generated method stub
 		
-	}
+	// }
 
-	@Override
-	public void salvarNoArq(String pNomeDoArq) {
-		try {
-			FileWriter fileW = new FileWriter(pNomeDoArq);
-			BufferedWriter escrita = new BufferedWriter(fileW);
+	// @Override
+	// public void salvarNoArq(String pNomeDoArq) {
+	// 	try {
+	// 		FileWriter fileW = new FileWriter(pNomeDoArq);
+	// 		BufferedWriter escrita = new BufferedWriter(fileW);
 			
-			escrita.write(this.obterLinha());
-			escrita.write(this.paciente.obterLinha());
-			for(Procedimento p : this.procedimentos) {
-				escrita.write(p.obterLinha());
-			}
-			escrita.close();
+	// 		escrita.write(this.obterLinha());
+	// 		escrita.write(this.paciente.obterLinha());
+	// 		for(Procedimento p : this.procedimentos) {
+	// 			escrita.write(p.obterLinha());
+	// 		}
+	// 		escrita.close();
 			
-		} catch (IOException e) {
-			System.out.println("[ERRO] " + e.getMessage());
-		} 
+	// 	} catch (IOException e) {
+	// 		System.out.println("[ERRO] " + e.getMessage());
+	// 	} 
 		
-	}
+	// }
 
 	@Override
 	public String getPrefixo() {
@@ -107,12 +104,29 @@ public class Prontuario implements IArquivoTxt, IArquivoTxt_linha {
 	}
 
 	@Override
-	public String obterLinha() {
-		return this.getPrefixo() + Constantes.SEPARADOR +
-			   this.getData().format(Constantes.FMT_DATETIME_BR()) + Constantes.SEPARADOR +
-			   this.getDescricao() + Constantes.SEPARADOR +
-			   this.getPaciente().getNome() + Constantes.SEPARADOR +
-			   this.getProcedimentos().size() + Constantes.CRLF;
+	public List<String> obterLinha() {
+		List<String> lRet;
+		lRet = new ArrayList<String>();
+		// Dados do cabecalho
+		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
+				 this.getData().format(Constantes.FMT_DATETIME_BR()) + Constantes.SEPARADOR +
+				 this.getDescricao() + Constantes.SEPARADOR +
+				 this.getPaciente().getNome() + Constantes.SEPARADOR +
+				 this.getProcedimentos().size());
+
+		// Dados do paciente
+		for (String lLinha : this.paciente.obterLinha()) {
+			lRet.add(lLinha);
+		}
+
+		// Dados dos procedimentos
+		for(Procedimento p : this.procedimentos) {
+			for (String lLinha : p.obterLinha()) {
+				lRet.add(lLinha);
+			}
+		}
+
+		return lRet;
 	}
 
 	@Override

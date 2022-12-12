@@ -1,14 +1,9 @@
 package br.anderson.infnet.appclinica.model.testes;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
-import br.anderson.infnet.appclinica.model.dominio.Procedimento;
-import br.anderson.infnet.appclinica.model.dominio.Prontuario;
-import br.anderson.infnet.appclinica.model.dominio.faker.PacienteFaker;
-import br.anderson.infnet.appclinica.model.dominio.faker.ProcedimentoFaker;
-import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
-import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
+import br.anderson.infnet.appclinica.model.core.ProntuarioContainer;
+import br.anderson.infnet.appclinica.model.dominio.faker.ProntuarioFaker;
 import br.anderson.infnet.appclinica.model.interfaces.IRelatorio;
 import br.anderson.infnet.appclinica.model.report.ProntuarioReport;
 
@@ -16,41 +11,15 @@ public class ProntuarioTests {
 
 	public static void main(String[] args) {
 		
-		Prontuario prontuario = new Prontuario();
-		List<Procedimento> procedimentos = new ArrayList<Procedimento>();
-		
-		// Criando o prontuário...
-		prontuario.setPaciente(PacienteFaker.getPaciente());
-		System.out.println( prontuario.toString() );
-		
-		// Adicionando procedimentos
-		try {
-			procedimentos.add(ProcedimentoFaker.getCirurgia());
-		} catch (ValorInvalidoException | DescricaoInvalidaException e) {
-			System.out.println("[ERRO] " + e.getMessage());
-		}
-		try {
-			procedimentos.add(ProcedimentoFaker.getExame());
-		} catch (ValorInvalidoException | DescricaoInvalidaException e) {
-			System.out.println("[ERRO] " + e.getMessage());
-		}
-		try {
-			procedimentos.add(ProcedimentoFaker.getMedicamento());
-		} catch (ValorInvalidoException | DescricaoInvalidaException e) {
-			System.out.println("[ERRO] " + e.getMessage());
+		ProntuarioContainer prontuarios = new ProntuarioContainer();
+		for(int i=0;i<new Random().nextInt(5)+1;i++) {
+			prontuarios.add(ProntuarioFaker.getProntuario());
 		}
 		
-		prontuario.setProcedimentos(procedimentos);
-		
-		IRelatorio relatorio = new ProntuarioReport(prontuario);
+		IRelatorio relatorio = new ProntuarioReport(prontuarios.getProntuarios().get(0));
 		relatorio.imprimir();
 		
-		prontuario.salvarNoArq("teste.txt");
-		
-		
-		
-		// TODO Auto-generated method stub
-
+		prontuarios.salvarNoArq("teste.txt");
 	}
 
 }

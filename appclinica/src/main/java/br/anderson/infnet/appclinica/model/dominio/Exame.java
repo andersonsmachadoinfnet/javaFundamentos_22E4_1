@@ -1,5 +1,8 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
@@ -28,9 +31,13 @@ public class Exame extends Procedimento {
 	}
 	
 	@Override
-	public String obterLinha() {
-		return super.obterLinha() + Constantes.SEPARADOR +
-				this.resultado + Constantes.CRLF;
+	public List<String> obterLinha() {
+		List<String> lRet;
+		lRet = new ArrayList<String>();
+		for (String lLinha : super.obterLinha()) {
+			lRet.add(lLinha + Constantes.SEPARADOR + this.resultado);
+		}
+		return lRet;
 	}
 
 	@Override

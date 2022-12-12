@@ -1,5 +1,8 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
@@ -69,9 +72,12 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 	}
 	
 	@Override
-	public String obterLinha() {
-		return this.getPrefixo() + Constantes.SEPARADOR +
-			   this.descricao + Constantes.SEPARADOR +
-			   this.valor;
+	public List<String> obterLinha() {
+		List<String> lRet;
+		lRet = new ArrayList<String>();
+		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
+				 this.descricao + Constantes.SEPARADOR +
+		         this.valor);	
+		return lRet;
 	}
 }

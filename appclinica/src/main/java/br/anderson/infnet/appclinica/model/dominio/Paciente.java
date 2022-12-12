@@ -1,6 +1,9 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
@@ -67,13 +70,16 @@ public class Paciente implements IArquivoTxt_linha {
 	}
 
 	@Override
-	public String obterLinha() {
-		return this.getPrefixo() + Constantes.SEPARADOR +
-				this.tipo + Constantes.SEPARADOR +
-				this.nome + Constantes.SEPARADOR +
-				this.cpf + Constantes.SEPARADOR +
-				this.email + Constantes.SEPARADOR +
-				this.dtNasc.format(Constantes.FMT_DATE_BR()) + Constantes.CRLF;
+	public List<String> obterLinha() {
+		List<String> lRet;
+		lRet = new ArrayList<String>();
+		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
+				 this.tipo + Constantes.SEPARADOR +
+				 this.nome + Constantes.SEPARADOR +
+				 this.cpf + Constantes.SEPARADOR +
+				 this.email + Constantes.SEPARADOR +
+				 this.dtNasc.format(Constantes.FMT_DATE_BR())); 
+		return lRet;
 	}
 
 	@Override
