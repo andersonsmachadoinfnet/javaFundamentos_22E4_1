@@ -1,5 +1,6 @@
 package br.anderson.infnet.appclinica.model.dominio.faker;
 
+import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.Faker;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
 import br.anderson.infnet.appclinica.model.dominio.Cirurgia;
@@ -19,7 +20,8 @@ public class ProcedimentoFaker {
 	public static Procedimento getExame() throws ValorInvalidoException, DescricaoInvalidaException {
 		return new Exame(ProcedimentoTipo.EXAME,
 				         Faker.getEXAME(),
-				         Faker.getVALOR());
+				         Faker.getVALOR(),
+				         Constantes.EXAME_NAO_AVALIADO);
 	}
 	
 	public static Procedimento getMedicamento() throws ValorInvalidoException, DescricaoInvalidaException {

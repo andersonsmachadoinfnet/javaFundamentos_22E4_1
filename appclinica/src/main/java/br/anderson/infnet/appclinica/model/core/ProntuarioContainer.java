@@ -10,6 +10,9 @@ import java.util.List;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.dominio.Prontuario;
+import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
+import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;
+import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt;
 
 public class ProntuarioContainer implements IArquivoTxt {
@@ -31,6 +34,7 @@ public class ProntuarioContainer implements IArquivoTxt {
 	public void lerDoArq(String pNomeDoArq) {
 		prontuarios.clear();
 		Prontuario lProntuarioAtual = new Prontuario();
+		int lLinhaNo = 1;
 
 		try {
 			FileReader file = new FileReader(pNomeDoArq);
@@ -39,13 +43,18 @@ public class ProntuarioContainer implements IArquivoTxt {
 			String[] lCampos = null;
 			while (lLinha != null) {
 				lCampos = lLinha.split(Constantes.SEPARADOR);
-				if (lCampos[0]==Constantes.PREFIXO_CLASSE_PRONTUARIO) {
+				if (Constantes.PREFIXO_CLASSE_PRONTUARIO.equals(lCampos[0])) {
 					lProntuarioAtual = new Prontuario();
 					add(lProntuarioAtual);
 				}
 				
-				lProntuarioAtual.setLinha(lLinha);
+				try {
+					lProntuarioAtual.setLinha(lLinha);
+				} catch (ValorInvalidoException | DescricaoInvalidaException | ProcedimentoTipoInvalidoException e) {
+					System.out.println(String.format("[ERROR] Lin: %d; %s", lLinhaNo, e.getMessage()));
+				}
 				lLinha  = leitura.readLine();
+				lLinhaNo++;
 			}
 			leitura.close();
 			file.close();

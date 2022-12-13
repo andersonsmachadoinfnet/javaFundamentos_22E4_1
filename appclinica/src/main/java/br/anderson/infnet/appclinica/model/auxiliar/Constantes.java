@@ -18,6 +18,9 @@ public class Constantes {
 	public static final String TESTE_ARQ_NOME               = "ArquivoTeste.txt";
 	public static final String TESTE_ARQ_PROCESSADO_PREFIXO = "out_";
 	
+	public static final String EXAME_NAO_AVALIADO           = "O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.";
+	public static final String PRONTUARIO_DESCRICAO         = "Este prontuário contém informações do Paciente informado.";
+	
 	
 	public static final DateTimeFormatter FMT_DATE_BR() {
 		return DateTimeFormatter.ofPattern(_FMT_DATE_BR_);

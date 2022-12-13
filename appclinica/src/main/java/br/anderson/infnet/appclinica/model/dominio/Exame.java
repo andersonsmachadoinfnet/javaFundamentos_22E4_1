@@ -12,9 +12,16 @@ import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 public class Exame extends Procedimento {
 	private String resultado;
 	
-	public Exame(ProcedimentoTipo pTipo, String pDescricao, float pValor) 
+	public Exame(ProcedimentoTipo pTipo, String pDescricao, float pValor, String pResultado) 
 		   throws ValorInvalidoException, DescricaoInvalidaException {
 		super(pTipo, pDescricao, pValor);
+		this.resultado = pResultado;
+	}
+	
+	protected Exame(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
+		super(pLinha);
+		setLinha(pLinha);
+		checaSeValidoOuGeraErro();
 	}
 
 	@Override
@@ -42,8 +49,9 @@ public class Exame extends Procedimento {
 
 	@Override
 	public void setLinha(String pLinha) {
-		// TODO Auto-generated method stub
-		
+		super.setLinha(pLinha);
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
+		this.resultado = lCampos[3];
 	}
 
 }

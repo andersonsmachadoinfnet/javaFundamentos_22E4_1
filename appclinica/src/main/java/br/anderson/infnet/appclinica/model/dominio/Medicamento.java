@@ -17,6 +17,12 @@ public class Medicamento  extends Procedimento {
 		super(pTipo, pDescricao, pValor);
 		this.bula = pBula;
 	}
+	
+	protected Medicamento(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
+		super(pLinha);
+		setLinha(pLinha);
+		checaSeValidoOuGeraErro();
+	}
 
 	@Override
 	public float calcularValorDoProcedimento(PacienteTipo pPacienteTp) {
@@ -39,8 +45,9 @@ public class Medicamento  extends Procedimento {
 
 	@Override
 	public void setLinha(String pLinha) {
-		// TODO Auto-generated method stub
-		
+		super.setLinha(pLinha);
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
+		this.bula= lCampos[3];
 	}
 
 }

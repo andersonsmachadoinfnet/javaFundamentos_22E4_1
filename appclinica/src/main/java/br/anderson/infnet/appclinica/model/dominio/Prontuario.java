@@ -2,9 +2,13 @@ package br.anderson.infnet.appclinica.model.dominio;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import java.util.ArrayList;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
+import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
+import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;
+import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
 public class Prontuario implements IArquivoTxt_linha {
@@ -16,7 +20,8 @@ public class Prontuario implements IArquivoTxt_linha {
 	private List<Procedimento> procedimentos;
 	
 	public Prontuario() {
-		data = LocalDateTime.now();
+		data      = LocalDateTime.now();
+		descricao = Constantes.PRONTUARIO_DESCRICAO;
 	}
 	
 	@Override
@@ -69,31 +74,6 @@ public class Prontuario implements IArquivoTxt_linha {
 		return data;
 	}
 
-	// @Override
-	// public void lerDoArq(String pNomeDoArq) {
-	// 	// TODO Auto-generated method stub
-		
-	// }
-
-	// @Override
-	// public void salvarNoArq(String pNomeDoArq) {
-	// 	try {
-	// 		FileWriter fileW = new FileWriter(pNomeDoArq);
-	// 		BufferedWriter escrita = new BufferedWriter(fileW);
-			
-	// 		escrita.write(this.obterLinha());
-	// 		escrita.write(this.paciente.obterLinha());
-	// 		for(Procedimento p : this.procedimentos) {
-	// 			escrita.write(p.obterLinha());
-	// 		}
-	// 		escrita.close();
-			
-	// 	} catch (IOException e) {
-	// 		System.out.println("[ERRO] " + e.getMessage());
-	// 	} 
-		
-	// }
-
 	@Override
 	public String getPrefixo() {
 		return Constantes.PREFIXO_CLASSE_PRONTUARIO;
@@ -112,6 +92,7 @@ public class Prontuario implements IArquivoTxt_linha {
 		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
 				 this.getData().format(Constantes.FMT_DATETIME_BR()) + Constantes.SEPARADOR +
 				 this.getDescricao() + Constantes.SEPARADOR +
+				 (this.web ? "Web": "Loja") + Constantes.SEPARADOR +
 				 this.getPaciente().getNome() + Constantes.SEPARADOR +
 				 this.getProcedimentos().size());
 
@@ -131,9 +112,25 @@ public class Prontuario implements IArquivoTxt_linha {
 	}
 
 	@Override
-	public void setLinha(String pLinha) {
-		// TODO Auto-generated method stub
+	public void setLinha(String pLinha) 
+			throws ValorInvalidoException, DescricaoInvalidaException, ProcedimentoTipoInvalidoException {
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
 		
+		switch (lCampos[0]) {
+		case Constantes.PREFIXO_CLASSE_PRONTUARIO:
+			this.data      = LocalDateTime.parse(lCampos[1], Constantes.FMT_DATETIME_BR());
+			this.descricao = lCampos[2];
+			this.web       = ("Web".equals(lCampos[3]));
+			this.procedimentos = new ArrayList<Procedimento>();
+			break;
+			
+		case Constantes.PREFIXO_CLASSE_PACIENTE:
+			this.paciente = new Paciente(pLinha);
+			break;
+			
+		default:
+			this.procedimentos.add(new ProcedimentoFabrica().getProcedimento(pLinha));
+			break;
+		}
 	}
-
 }

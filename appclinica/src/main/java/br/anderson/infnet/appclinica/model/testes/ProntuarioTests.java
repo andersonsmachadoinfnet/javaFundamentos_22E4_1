@@ -1,5 +1,7 @@
 package br.anderson.infnet.appclinica.model.testes;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.Random;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
@@ -12,18 +14,27 @@ public class ProntuarioTests {
 
 	public static void main(String[] args) {
 		gerarArquivoTestePopulado();
+		lerEProcessaArquivoTeste();
 	}
 
 	private static void gerarArquivoTestePopulado() {
-		ProntuarioContainer prontuarios = new ProntuarioContainer();
-		for(int i=0;i<new Random().nextInt(Constantes.TESTE_ARQ_CLASSEMAE_QTD)+1;i++) {
-			prontuarios.add(ProntuarioFaker.getProntuario());
+		File f = new File(Constantes.TESTE_ARQ_NOME);
+		if (!f.exists()) {
+			ProntuarioContainer prontuarios = new ProntuarioContainer();
+			for(int i=0;i<new Random().nextInt(Constantes.TESTE_ARQ_CLASSEMAE_QTD)+1;i++) {
+				prontuarios.add(ProntuarioFaker.getProntuario());
+			}
+			
+			IRelatorio relatorio = new ProntuarioReport(prontuarios.getProntuarios().get(0));
+			relatorio.imprimir();
+			
+			prontuarios.salvarNoArq(Constantes.TESTE_ARQ_NOME);
 		}
-		
-		IRelatorio relatorio = new ProntuarioReport(prontuarios.getProntuarios().get(0));
-		relatorio.imprimir();
-		
-		prontuarios.salvarNoArq(Constantes.TESTE_ARQ_NOME);
+	}
+	
+	private static void lerEProcessaArquivoTeste() {
+		ProntuarioContainer prontuarios = new ProntuarioContainer();
+		prontuarios.lerDoArq(Constantes.TESTE_ARQ_NOME);
 	}
 
 }

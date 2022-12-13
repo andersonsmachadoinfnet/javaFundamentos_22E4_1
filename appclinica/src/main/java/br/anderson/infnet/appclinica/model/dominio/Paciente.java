@@ -1,6 +1,7 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,11 @@ public class Paciente implements IArquivoTxt_linha {
 		this.email  = pEmail;
 		this.dtNasc = pDtNasc;
 		
+		checaSeValidoOuGeraErro();
+	}
+	
+	protected Paciente(String pLinha) {
+		setLinha(pLinha);
 		checaSeValidoOuGeraErro();
 	}
 	
@@ -84,7 +90,11 @@ public class Paciente implements IArquivoTxt_linha {
 
 	@Override
 	public void setLinha(String pLinha) {
-		// TODO Auto-generated method stub
-		
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
+		this.tipo = PacienteTipo.valueOf(lCampos[1].toUpperCase());
+		this.nome  = lCampos[2];
+		this.cpf   = lCampos[3];
+		this.email = lCampos[4];
+		this.dtNasc= LocalDate.parse(lCampos[5], Constantes.FMT_DATE_BR());
 	}
 }

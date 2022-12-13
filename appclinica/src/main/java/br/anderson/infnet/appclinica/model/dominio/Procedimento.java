@@ -1,5 +1,6 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,12 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 		
 		checaSeValidoOuGeraErro();
 	}
+	
+	protected Procedimento(String pLinha) 
+			throws ValorInvalidoException, DescricaoInvalidaException {
+		setLinha(pLinha);
+		checaSeValidoOuGeraErro();
+	};
 	
 	public abstract float calcularValorDoProcedimento(PacienteTipo pPacienteTp);
 	
@@ -79,5 +86,13 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 				 this.descricao + Constantes.SEPARADOR +
 		         this.valor);	
 		return lRet;
+	}
+	
+	@Override
+	public void setLinha(String pLinha) {
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
+		this.tipo = ProcedimentoTipo.setPrefixo(lCampos[0].toUpperCase());
+		this.descricao  = lCampos[1];
+		this.valor      = Float.valueOf(lCampos[2]);
 	}
 }

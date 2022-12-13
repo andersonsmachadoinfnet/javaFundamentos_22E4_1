@@ -23,4 +23,22 @@ public enum ProcedimentoTipo {
 		} else
 			return "";
 	}
+	
+	public static ProcedimentoTipo setPrefixo(String pPrefixo) {
+		switch (pPrefixo) {
+		case Constantes.PREFIXO_CLASSE_PROCEDIMENTO_CIRUR:
+			return ProcedimentoTipo.valueOf("CIRURGIA");
+			//break;
+		
+		case Constantes.PREFIXO_CLASSE_PROCEDIMENTO_EXAME:
+			return ProcedimentoTipo.valueOf("EXAME");
+			//break;
+		
+		case Constantes.PREFIXO_CLASSE_PROCEDIMENTO_MEDIC:
+			return ProcedimentoTipo.valueOf("MEDICAMENTO");
+			//break;
+		default:
+			return ProcedimentoTipo.valueOf(pPrefixo);
+		}
+	}
 }
