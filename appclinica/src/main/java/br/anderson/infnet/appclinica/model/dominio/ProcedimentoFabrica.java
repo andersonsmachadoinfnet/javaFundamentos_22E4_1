@@ -1,7 +1,5 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
-import java.time.LocalDateTime;
-
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;

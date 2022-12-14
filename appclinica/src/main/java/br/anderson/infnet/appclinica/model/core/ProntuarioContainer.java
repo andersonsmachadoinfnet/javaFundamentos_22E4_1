@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.dominio.Prontuario;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
@@ -87,7 +88,8 @@ public class ProntuarioContainer implements IArquivoTxt {
 				
 				try {
 					lProntuarioAtual.setLinha(lLinha);
-				} catch (ValorInvalidoException | DescricaoInvalidaException | ProcedimentoTipoInvalidoException e) {
+				} catch (ValorInvalidoException | DescricaoInvalidaException | 
+						 ProcedimentoTipoInvalidoException | CampoRequeridoNaoInformado  e) {
 					System.out.println(String.format("[ERROR] Lin: %d; %s", lLinhaNo, e.getMessage()));
 				}
 				lLinha  = leitura.readLine();

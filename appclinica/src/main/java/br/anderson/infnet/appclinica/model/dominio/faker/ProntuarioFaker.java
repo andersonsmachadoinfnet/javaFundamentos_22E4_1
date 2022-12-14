@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import br.anderson.infnet.appclinica.model.auxiliar.Faker;
 import br.anderson.infnet.appclinica.model.dominio.Prontuario;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.dominio.Procedimento;
 
 public class ProntuarioFaker {
-    public static Prontuario getProntuario() {
+    public static Prontuario getProntuario() throws CampoRequeridoNaoInformado {
         Prontuario prontuario = new Prontuario();
 		List<Procedimento> procedimentos = new ArrayList<Procedimento>();
 		

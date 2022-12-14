@@ -1,13 +1,13 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 
 public class Paciente implements IArquivoTxt_linha {
 	private PacienteTipo tipo;
@@ -16,7 +16,7 @@ public class Paciente implements IArquivoTxt_linha {
 	private       String email;
 	private    LocalDate dtNasc;
 	
-	public Paciente(String pNome, String pCpf, String pEmail, LocalDate pDtNasc) {
+	public Paciente(String pNome, String pCpf, String pEmail, LocalDate pDtNasc) throws CampoRequeridoNaoInformado  {
 		this.tipo   = PacienteTipo.PARTICULAR;
 		this.nome   = pNome;
 		this.cpf    = pCpf;
@@ -26,7 +26,7 @@ public class Paciente implements IArquivoTxt_linha {
 		checaSeValidoOuGeraErro();
 	}
 	
-	protected Paciente(String pLinha) {
+	protected Paciente(String pLinha) throws CampoRequeridoNaoInformado  {
 		setLinha(pLinha);
 		checaSeValidoOuGeraErro();
 	}
@@ -40,9 +40,16 @@ public class Paciente implements IArquivoTxt_linha {
 		                          .toString();
 	}
 	
-	public void checaSeValidoOuGeraErro() {
-		/* Colocar aqui as validacoes da classe: isValido? */
-		// TODO: Falta implementar
+	public void checaSeValidoOuGeraErro() throws CampoRequeridoNaoInformado {
+		if (this.nome == null || this.nome.isEmpty()) {
+			throw new CampoRequeridoNaoInformado("Nome");
+		}
+		if (this.cpf == null || this.cpf.isEmpty()) {
+			throw new CampoRequeridoNaoInformado("CPF");
+		}
+		if (this.email == null || this.email.isEmpty() || this.email.indexOf("@")<1|| this.email.indexOf(".")<1) {
+			throw new CampoRequeridoNaoInformado("E-mail");
+		}
 	}
 	
 	public String getNome() {

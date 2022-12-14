@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
@@ -122,7 +123,7 @@ public class Prontuario implements IArquivoTxt_linha {
 
 	@Override
 	public void setLinha(String pLinha) 
-			throws ValorInvalidoException, DescricaoInvalidaException, ProcedimentoTipoInvalidoException {
+			throws ValorInvalidoException, DescricaoInvalidaException, ProcedimentoTipoInvalidoException, CampoRequeridoNaoInformado {
 		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
 		
 		switch (lCampos[0]) {

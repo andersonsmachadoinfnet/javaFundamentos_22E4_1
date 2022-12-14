@@ -1,6 +1,5 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

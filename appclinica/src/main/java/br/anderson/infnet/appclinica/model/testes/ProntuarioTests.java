@@ -6,17 +6,22 @@ import java.util.Random;
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.core.ProntuarioContainer;
 import br.anderson.infnet.appclinica.model.dominio.faker.ProntuarioFaker;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 import br.anderson.infnet.appclinica.model.interfaces.IRelatorio;
 import br.anderson.infnet.appclinica.model.report.ProntuarioReport;
 
 public class ProntuarioTests {
 
 	public static void main(String[] args) {
-		gerarArquivoTestePopulado();
+		try {
+			gerarArquivoTestePopulado();
+		} catch (CampoRequeridoNaoInformado e) {
+			System.out.println("[ERRO] " + e.getMessage());
+		}
 		lerEProcessaArquivoTeste();
 	}
 
-	private static void gerarArquivoTestePopulado() {
+	private static void gerarArquivoTestePopulado() throws CampoRequeridoNaoInformado {
 		File f = new File(Constantes.TESTE_ARQ_NOME);
 		if (!f.exists()) {
 			ProntuarioContainer prontuarios = new ProntuarioContainer();
