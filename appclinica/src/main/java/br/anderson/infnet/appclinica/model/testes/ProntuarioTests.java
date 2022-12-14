@@ -1,7 +1,6 @@
 package br.anderson.infnet.appclinica.model.testes;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.util.Random;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
@@ -34,7 +33,7 @@ public class ProntuarioTests {
 	
 	private static void lerEProcessaArquivoTeste() {
 		ProntuarioContainer prontuarios = new ProntuarioContainer();
-		prontuarios.lerDoArq(Constantes.TESTE_ARQ_NOME);
+		prontuarios.processar(Constantes.TESTE_ARQ_NOME);
 	}
 
 }

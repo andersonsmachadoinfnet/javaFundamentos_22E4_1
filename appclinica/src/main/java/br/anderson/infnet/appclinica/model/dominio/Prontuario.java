@@ -73,6 +73,15 @@ public class Prontuario implements IArquivoTxt_linha {
 	public LocalDateTime getData() {
 		return data;
 	}
+	
+	public float getValorTotal() {
+		float lVrTot = (float) 0.00;
+		for(Procedimento p : this.procedimentos) {
+			lVrTot = lVrTot + p.getValor();
+		}
+
+		return lVrTot;
+	}
 
 	@Override
 	public String getPrefixo() {

@@ -29,6 +29,43 @@ public class ProntuarioContainer implements IArquivoTxt {
 	public List<Prontuario> getProntuarios() {
 		return prontuarios;
 	}
+	
+	public void processar(String pNomeDoArq) {
+		lerDoArq(pNomeDoArq);
+		
+		try {
+			int   lQtd   = 0;
+			float lVrTot = (float) 0.00;
+			FileWriter fileW = new FileWriter(Constantes.TESTE_ARQ_PROCESSADO_PREFIXO+pNomeDoArq);
+	 		BufferedWriter escrita = new BufferedWriter(fileW);
+	 		
+	 		for(Prontuario lProntuario : this.prontuarios) {
+	 			escrita.write(processar_gerarLinha(lProntuario));
+	 			
+	 			lQtd++;
+	 			lVrTot = lVrTot + lProntuario.getValorTotal();
+	 		}
+	 		escrita.close();
+	 		processar_relatorio(lQtd, lVrTot);
+	 	} catch (IOException e) {
+	 		System.out.println("[ERRO] " + e.getMessage());
+	 	}
+	}
+	
+	private void processar_relatorio(int pQtd, float pVrTotal) {
+		System.out.println("Relatório de Processamento de Prontuários");
+ 		System.out.println("----------------------------------------------------");
+ 		System.out.println("Prontuários processados: "+pQtd);
+ 		System.out.println("Valor total processado : "+pVrTotal);
+	}
+	
+	private String processar_gerarLinha(Prontuario pProntuario) {
+		return	pProntuario.getData().format(Constantes.FMT_DATE_MES_BR()) + Constantes.SEPARADOR +
+				pProntuario.getDescricao() + Constantes.SEPARADOR +
+				pProntuario.getPaciente().getNome() + Constantes.SEPARADOR +
+				pProntuario.getValorTotal() + Constantes.SEPARADOR +
+				pProntuario.getProcedimentos().size();
+	}
 
 	@Override
 	public void lerDoArq(String pNomeDoArq) {
