@@ -1,0 +1,13 @@
+C;14/12/2022 20:28;Este prontuário contém informações do Paciente informado.;Loja;ANTONIO LIMA LIMA;5
+P;Particular;ANTONIO LIMA LIMA;996.308.270-00;ANTONIO_LIMA_LIMA24@gmail.com;11/10/2031
+PC;Hidrocele;488.0;sedurnaenimfermentumPellentesqueodio,necProinelit.ultrices.ornare.
+PC;Timpanoplastia;333.0;loremsagittisNulla
+PE;Ecocardiograma;334.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
+PE;Glicemia em jejum;206.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
+PM;Norepinefrina Hemitartarato 2mg/mL ampola 4mL – sol.injetável;232.0;ornareVestibulumeuismodneque.
+C;14/12/2022 20:28;Este prontuário contém informações do Paciente informado.;Loja;JOSE LIMA FERREIA;4
+P;Particular;JOSE LIMA FERREIA;179.888.440-24;JOSE_LIMA_FERREIA39@gmail.com;25/09/2014
+PC;Hérnia inguinal;696.0;leoipsummaximusafaucibusvarius.nibhVestibulumetposuere.efficiturVivamusnisl.commodocommodoblandit
+PC;Estapedectomia;633.0;tempusadipiscingnuncmattisacametloremtristiquequislacusNamurnatemporsedmattisNamnunchabitassesollicitudinsapien,Proin
+PE;Mamografia;504.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
+PE;Mamografia;854.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
