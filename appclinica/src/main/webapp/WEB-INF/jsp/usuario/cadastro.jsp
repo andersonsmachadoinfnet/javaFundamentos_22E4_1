@@ -37,7 +37,7 @@
                 <a class="nav-link inactive" aria-current="page" href="#">Sobre nós</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/usuario">Cadastrar Usuários</a>
+                <a class="nav-link active" aria-current="page" href="/usuario/lista">Cadastrar Usuários</a>
               </li> 
             </ul>
           </div>

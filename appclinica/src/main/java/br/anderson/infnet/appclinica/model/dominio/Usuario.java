@@ -6,10 +6,19 @@ public class Usuario {
 	private String senha;
 	private String email;
 	
-	public Usuario(String nome, String senha) {
+	public Usuario() {
+	}
+	
+	public Usuario(String nome, String email, String senha) {
+		this();
 		this.setUserId(-1);
 		this.setNome(nome);
+		this.setEmail(email);
 		this.setSenha(senha);
+	}
+	
+	public Usuario(String email, String senha) {
+		this("", email, senha);
 	}
 	
 	public String toString() {
