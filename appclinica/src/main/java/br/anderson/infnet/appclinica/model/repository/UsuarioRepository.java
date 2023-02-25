@@ -1,21 +1,20 @@
 package br.anderson.infnet.appclinica.model.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.anderson.infnet.appclinica.model.dominio.Usuario;
 
 public class UsuarioRepository {
-	//private static Map<Integer, Usuario> Usuarios = new HashMap<Integer, Usuario>();
-	private static List<Usuario> lista = new ArrayList<Usuario>();
+	private static Integer id = 1;
+	private static Map<Integer, Usuario> Usuarios = new HashMap<Integer, Usuario>();
+	//private static List<Usuario> lista = new ArrayList<Usuario>();
 
 	public static boolean incluir(Usuario usuario) {
-		
+		usuario.setUserId(id++);
 		try {
-			//Usuarios.put(usuario.getUserId(), usuario);
-			lista.add(usuario);
+			Usuarios.put(usuario.getUserId(), usuario);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -23,10 +22,12 @@ public class UsuarioRepository {
 		
 	}
 
-	public static List<Usuario> obterLista(){
-		//List<Usuario> lista = new ArrayList<Usuario>(Usuarios.values());
-		return lista;
-		
+	public static Usuario excluir(Integer key) {
+		return Usuarios.remove(key);
+	}
+
+	public static Collection<Usuario> obterLista(){
+		return Usuarios.values();
 	}
 
 }

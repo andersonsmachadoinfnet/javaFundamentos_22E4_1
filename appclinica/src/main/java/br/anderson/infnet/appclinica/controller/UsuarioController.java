@@ -1,10 +1,9 @@
 package br.anderson.infnet.appclinica.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.anderson.infnet.appclinica.model.dominio.Usuario;
@@ -43,6 +42,16 @@ public class UsuarioController {
 		*/
 	
 		return "usuario/lista";
+	}
+	
+	@GetMapping(value = "/usuario/{id}/excluir")
+	public String excluir(@PathVariable Integer id) {
+		
+		Usuario usuario = UsuarioRepository.excluir(id);
+		
+		mensagem = String.format("Usuário %s removido", usuario.getNome());
+
+		return "redirect:/usuario/lista";
 	}
 
 }
