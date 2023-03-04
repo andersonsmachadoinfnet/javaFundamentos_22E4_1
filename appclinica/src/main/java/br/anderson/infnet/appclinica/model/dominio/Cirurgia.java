@@ -12,10 +12,10 @@ import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 public class Cirurgia extends Procedimento {
 	private String indicadoPara;
 	
-	public Cirurgia(ProcedimentoTipo pTipo, String pDescricao, float pValor, String pIndicadoPara) 
+	public Cirurgia(/*ProcedimentoTipo pTipo, */String descricao, float valor, String indicadoPara) 
 		   throws ValorInvalidoException, DescricaoInvalidaException {
-		super(pTipo, pDescricao, pValor);
-		this.indicadoPara = pIndicadoPara;
+		super(ProcedimentoTipo.CIRURGIA, descricao, valor);
+		this.indicadoPara = indicadoPara;
 	}
 	
 	protected Cirurgia(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {

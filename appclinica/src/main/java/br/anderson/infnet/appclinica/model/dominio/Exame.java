@@ -12,10 +12,10 @@ import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 public class Exame extends Procedimento {
 	private String resultado;
 	
-	public Exame(ProcedimentoTipo pTipo, String pDescricao, float pValor, String pResultado) 
+	public Exame(String descricao, float valor) 
 		   throws ValorInvalidoException, DescricaoInvalidaException {
-		super(pTipo, pDescricao, pValor);
-		this.resultado = pResultado;
+		super(ProcedimentoTipo.EXAME, descricao, valor);
+		this.resultado = Constantes.EXAME_NAO_AVALIADO;
 	}
 	
 	protected Exame(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {

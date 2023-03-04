@@ -18,7 +18,7 @@
 	
         <div class="container">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong>Fase: </strong>Site em construção, feature 3 do Projeto de bloco: Desenvolvimento Java.</br>
+		  <strong>Fase: </strong>Site em construção, feature 4 do Projeto de bloco: Desenvolvimento Java.</br>
 		  Clique em Cadastrar Usuários.
 		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		    <span aria-hidden="true">&times;</span>

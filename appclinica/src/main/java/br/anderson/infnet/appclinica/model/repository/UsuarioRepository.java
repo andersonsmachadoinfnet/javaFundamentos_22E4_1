@@ -9,7 +9,6 @@ import br.anderson.infnet.appclinica.model.dominio.Usuario;
 public class UsuarioRepository {
 	private static Integer id = 1;
 	private static Map<Integer, Usuario> Usuarios = new HashMap<Integer, Usuario>();
-	//private static List<Usuario> lista = new ArrayList<Usuario>();
 
 	public static boolean incluir(Usuario usuario) {
 		usuario.setUserId(id++);

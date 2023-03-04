@@ -14,10 +14,11 @@ import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
 public class Prontuario implements IArquivoTxt_linha {
 
-	private String descricao;
-	private boolean web;
-	private LocalDateTime data;
-	private Paciente paciente;
+	private                int id;
+	private             String descricao;
+	private            boolean web;
+	private      LocalDateTime data;
+	private           Paciente paciente;
 	private List<Procedimento> procedimentos;
 	
 	public Prontuario() {
@@ -142,5 +143,13 @@ public class Prontuario implements IArquivoTxt_linha {
 			this.procedimentos.add(new ProcedimentoFabrica().getProcedimento(pLinha));
 			break;
 		}
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int pId) {
+		this.id = pId;
 	}
 }

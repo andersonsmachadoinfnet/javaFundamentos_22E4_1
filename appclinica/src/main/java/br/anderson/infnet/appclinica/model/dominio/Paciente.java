@@ -10,18 +10,19 @@ import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 
 public class Paciente implements IArquivoTxt_linha {
+	private          int id;
 	private PacienteTipo tipo;
 	private       String nome;
 	private       String cpf;
 	private       String email;
 	private    LocalDate dtNasc;
 	
-	public Paciente(String pNome, String pCpf, String pEmail, LocalDate pDtNasc) throws CampoRequeridoNaoInformado  {
+	public Paciente(String nome, String cpf, String email, String dtNasc) throws CampoRequeridoNaoInformado  {
 		this.tipo   = PacienteTipo.PARTICULAR;
-		this.nome   = pNome;
-		this.cpf    = pCpf;
-		this.email  = pEmail;
-		this.dtNasc = pDtNasc;
+		this.nome   = nome;
+		this.cpf    = cpf;
+		this.email  = email;
+		this.dtNasc = LocalDate.parse(dtNasc);
 		
 		checaSeValidoOuGeraErro();
 	}
@@ -58,6 +59,14 @@ public class Paciente implements IArquivoTxt_linha {
 
 	public String getCpf() {
 		return cpf;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int pId) {
+		this.id = pId;
 	}
 
 	public String getEmail() {

@@ -10,6 +10,6 @@ public class PacienteFaker {
 		return new Paciente(lNome, 
 				            Faker.getCPF(),
 				            Faker.getEmail(lNome),
-				            Faker.getDtNasc());
+				            Faker.getDtNasc().toString());
 	}
 }

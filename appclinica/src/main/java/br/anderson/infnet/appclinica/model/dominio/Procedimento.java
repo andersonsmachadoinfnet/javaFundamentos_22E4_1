@@ -12,6 +12,7 @@ import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
 public abstract class Procedimento implements IArquivoTxt_linha  {
 
+	private              int id;
 	private ProcedimentoTipo tipo;
 	private           String descricao;
 	private            float valor;
@@ -21,6 +22,7 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 		this.tipo      = pTipo;
 		this.descricao = pDescricao;
 		this.valor     = pValor;
+		this.id        = -1;
 		
 		checaSeValidoOuGeraErro();
 	}
@@ -53,6 +55,15 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 		                          .append(valor).append(Constantes.SEPARADOR)
 		                          .toString();
 	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int pId) {
+		this.id = pId;
+	}
+	
 	
 	
 	public ProcedimentoTipo getTipo() {
