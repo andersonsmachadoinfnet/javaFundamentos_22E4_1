@@ -4,13 +4,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import br.anderson.infnet.appclinica.model.dominio.Cirurgia;
 
+@Component
 public class CirurgiaRepository {
 	private static Integer id = 1;
 	private static Map<Integer, Cirurgia> Cirurgias = new HashMap<Integer, Cirurgia>();
 
-	public static boolean incluir(Cirurgia cirurgia) {
+	public boolean incluir(Cirurgia cirurgia) {
 		cirurgia.setId(id++);
 		try {
 			Cirurgias.put(cirurgia.getId(), cirurgia);
@@ -21,11 +24,11 @@ public class CirurgiaRepository {
 		
 	}
 
-	public static Cirurgia excluir(Integer key) {
+	public Cirurgia excluir(Integer key) {
 		return Cirurgias.remove(key);
 	}
 
-	public static Collection<Cirurgia> obterLista(){
+	public Collection<Cirurgia> obterLista(){
 		return Cirurgias.values();
 	}
 }

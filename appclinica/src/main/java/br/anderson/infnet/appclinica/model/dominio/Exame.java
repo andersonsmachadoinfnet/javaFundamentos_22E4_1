@@ -18,7 +18,7 @@ public class Exame extends Procedimento {
 		this.resultado = Constantes.EXAME_NAO_AVALIADO;
 	}
 	
-	protected Exame(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
+	public Exame(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
 		super(pLinha);
 		setLinha(pLinha);
 		checaSeValidoOuGeraErro();

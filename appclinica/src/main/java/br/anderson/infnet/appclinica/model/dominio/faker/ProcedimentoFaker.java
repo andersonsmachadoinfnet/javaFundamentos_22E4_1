@@ -1,8 +1,6 @@
 package br.anderson.infnet.appclinica.model.dominio.faker;
 
-import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.Faker;
-import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
 import br.anderson.infnet.appclinica.model.dominio.Cirurgia;
 import br.anderson.infnet.appclinica.model.dominio.Exame;
 import br.anderson.infnet.appclinica.model.dominio.Medicamento;

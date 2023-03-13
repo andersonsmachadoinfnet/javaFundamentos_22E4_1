@@ -18,7 +18,7 @@ public class Medicamento  extends Procedimento {
 		this.bula = bula;
 	}
 	
-	protected Medicamento(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
+	public Medicamento(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
 		super(pLinha);
 		setLinha(pLinha);
 		checaSeValidoOuGeraErro();

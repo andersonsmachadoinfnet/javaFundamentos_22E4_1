@@ -18,7 +18,7 @@ public class Cirurgia extends Procedimento {
 		this.indicadoPara = indicadoPara;
 	}
 	
-	protected Cirurgia(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
+	public Cirurgia(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException {
 		super(pLinha);
 		setLinha(pLinha);
 		checaSeValidoOuGeraErro();

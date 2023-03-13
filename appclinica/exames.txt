@@ -1,0 +1,3 @@
+PE;Creatinina;121.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
+PE;Hemograma;99.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.
+PE;Eletrocardiograma;255.0;O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.

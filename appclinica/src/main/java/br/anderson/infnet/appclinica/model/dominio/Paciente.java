@@ -17,6 +17,9 @@ public class Paciente implements IArquivoTxt_linha {
 	private       String email;
 	private    LocalDate dtNasc;
 	
+	public Paciente() {
+	}
+	
 	public Paciente(String nome, String cpf, String email, String dtNasc) throws CampoRequeridoNaoInformado  {
 		this.tipo   = PacienteTipo.PARTICULAR;
 		this.nome   = nome;

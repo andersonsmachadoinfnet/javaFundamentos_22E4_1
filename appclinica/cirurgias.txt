@@ -1,0 +1,3 @@
+PC;Hernia umbilical;7000.00;Incluir descricao da cirurgia
+PC;Fimose;1500.00;Incluir descricao da cirurgia
+PC;Adenóide;3000.00;Incluir descricao da cirurgia

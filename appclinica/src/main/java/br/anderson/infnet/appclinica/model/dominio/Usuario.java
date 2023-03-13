@@ -1,6 +1,16 @@
 package br.anderson.infnet.appclinica.model.dominio;
 
-public class Usuario {
+import java.util.ArrayList;
+import java.util.List;
+
+import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
+import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
+import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
+import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoException;
+import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
+import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
+
+public class Usuario implements IArquivoTxt_linha  {
 	private    int userId;
 	private String nome;
 	private String senha;
@@ -66,5 +76,36 @@ public class Usuario {
 		this.email = email;
 	}
 
-	
+	@Override
+	public String getPrefixo() {
+		return Constantes.PREFIXO_CLASSE_USUARIO;
+	}
+
+	@Override
+	public boolean isPrefixo(String pPrefixo) {
+		return getPrefixo().equals(pPrefixo);
+	}
+
+	@Override
+	public List<String> obterLinha() {
+		List<String> lRet;
+		lRet = new ArrayList<String>();
+		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
+				 this.userId + Constantes.SEPARADOR +
+				 this.nome + Constantes.SEPARADOR +
+				 this.senha + Constantes.SEPARADOR +
+				 this.email + Constantes.SEPARADOR); 
+		
+		return lRet;
+	}
+
+	@Override
+	public void setLinha(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException,
+			ProcedimentoTipoInvalidoException, CampoRequeridoNaoInformado {
+		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
+		this.userId= Integer.valueOf(lCampos[1]);
+		this.nome  = lCampos[2];
+		this.senha = lCampos[3];
+		this.email = lCampos[4];
+	}
 }

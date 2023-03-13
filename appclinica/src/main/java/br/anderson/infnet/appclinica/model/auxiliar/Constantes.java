@@ -10,6 +10,7 @@ public class Constantes {
 	public static final String SEPARADOR = ";";
 	public static final String PREFIXO_CLASSE_PACIENTE   = "P";
 	public static final String PREFIXO_CLASSE_PRONTUARIO = "C";
+	public static final String PREFIXO_CLASSE_USUARIO    = "U";
 	public static final String PREFIXO_CLASSE_PROCEDIMENTO_EXAME = "PE";
 	public static final String PREFIXO_CLASSE_PROCEDIMENTO_MEDIC = "PM";
 	public static final String PREFIXO_CLASSE_PROCEDIMENTO_CIRUR = "PC";
@@ -18,6 +19,12 @@ public class Constantes {
 	public static final    int TESTE_ARQ_CLASSEMAE_QTD      = 5;
 	public static final String TESTE_ARQ_NOME               = "ArquivoTeste.txt";
 	public static final String TESTE_ARQ_PROCESSADO_PREFIXO = "out_";
+	
+	public static final String LOADER_ARQ_PACIENTE          = "pacientes.txt";
+	public static final String LOADER_ARQ_USUARIO           = "usuarios.txt";
+	public static final String LOADER_ARQ_EXAME             = "exames.txt";
+	public static final String LOADER_ARQ_MEDICAMENTO       = "medicamentos.txt";
+	public static final String LOADER_ARQ_CIRURGIA          = "cirurgias.txt";
 	
 	public static final String EXAME_NAO_AVALIADO           = "O exame ainda não foi avaliado pelo profissional da área. Tente mais tarde.";
 	public static final String PRONTUARIO_DESCRICAO         = "Este prontuário contém informações do Paciente informado.";
