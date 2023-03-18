@@ -13,15 +13,20 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repository;
 	
-	public boolean incluir(Usuario usuario) {
-		return repository.incluir(usuario);
+	public Usuario autenticar(Usuario usuario) {
+		return repository.autenticacao(usuario.getEmail(), usuario.getSenha());
+	}
+	
+	public Usuario incluir(Usuario usuario) {
+		return repository.save(usuario); // incluir
 	}
 
-	public Usuario excluir(Integer key) {
-		return repository.excluir(key);
+	public void excluir(Integer key) {
+		repository.deleteById(key); // excluir
 	}
 
 	public Collection<Usuario> obterLista(){
-		return repository.obterLista();
+		return (Collection<Usuario>) repository.findAll();
+		//return repository.obterLista();
 	}
 }

@@ -3,6 +3,14 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.exceptions.CampoRequeridoNaoInformado;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
@@ -10,11 +18,19 @@ import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoEx
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
+@Entity
+@Table(name = "TUsuario")
 public class Usuario implements IArquivoTxt_linha  {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private    int userId;
 	private String nome;
 	private String senha;
 	private String email;
+	
+	@OneToMany
+	@JoinColumn(name = "id")
+	private List<Paciente> pacientes;
 	
 	public Usuario() {
 	}
@@ -75,6 +91,13 @@ public class Usuario implements IArquivoTxt_linha  {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
 
 	@Override
 	public String getPrefixo() {
@@ -108,4 +131,5 @@ public class Usuario implements IArquivoTxt_linha  {
 		this.senha = lCampos[3];
 		this.email = lCampos[4];
 	}
+	
 }

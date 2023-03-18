@@ -2,6 +2,7 @@ package br.anderson.infnet.appclinica.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,14 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import br.anderson.infnet.appclinica.model.dominio.Usuario;
 import br.anderson.infnet.appclinica.model.repository.AcessoRepository;
+import br.anderson.infnet.appclinica.model.service.UsuarioService;
 
 @Controller
 @SessionAttributes("usuario")
 public class AcessoController {
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	String msg;
 
 	@GetMapping(value = "/login")
@@ -27,7 +32,7 @@ public class AcessoController {
 	public String login(Model model, @RequestParam String email, @RequestParam String senha) {
 		
 		Usuario user = new Usuario(email, senha);
-		user = AcessoRepository.autenticar(user);
+		user = usuarioService.autenticar(user);
 
 		if(user!= null) {
 			model.addAttribute("usuario", user);

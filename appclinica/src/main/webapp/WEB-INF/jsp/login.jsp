@@ -22,7 +22,7 @@
 		<form action="/login" method="post">
 		  
 		  <div class="form-group">
-		    <label>E-mail ou Apelido:</label>
+		    <label>E-mail:</label>
 		    <input type="email" class="form-control" placeholder="Entre com o seu e-mail ou apelido" name="email" required>
 		  </div>
 

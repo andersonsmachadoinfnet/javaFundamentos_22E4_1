@@ -29,6 +29,7 @@
 			      <th>CPF</th>
 			      <th>Email</th>
 			      <th>DtNasc</th>
+			      <th>Usuario</th>
 			      <th></th>
 			    </tr>
 			  </thead>
@@ -39,6 +40,7 @@
 			      <td><c:out value="${u.cpf}" /></td>
 			      <td><c:out value="${u.email}" /></td>
 			      <td><c:out value="${u.dtNasc}" /></td>
+			      <td><c:out value="${u.usuario.nome}" /></td>
 			      <td><a href="/paciente/${u.id}/excluir">excluir</a></td>
 			    </tr>
 			  </c:forEach>
