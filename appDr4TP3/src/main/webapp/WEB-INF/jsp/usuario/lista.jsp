@@ -27,7 +27,9 @@
 			    <tr>
 			      <th>Nome</th>
 			      <th>E-mail</th>
-			      <th>Pacientes</th>
+			      <th>Telefone</th>
+			      <th>CEP</th>
+			      <th>Endereço</th>
 			      <th></th>
 			    </tr>
 			  </thead>
@@ -36,8 +38,10 @@
 			  	<tr>
 			      <td><c:out value="${u.nome}" /></td>
 			      <td><c:out value="${u.email}" /></td>
-			      <td><c:out value="${u.pacientes.size()}" /></td>
-			      <td><a href="/usuario/${u.userId}/excluir">excluir</a></td>
+			      <td><c:out value="${u.telefone}" /></td>
+			      <td><c:out value="${u.cep}" /></td>
+			      <td><c:out value="${u.endereco}" /></td>
+			      <td><a href="/usuario/${u.id}/excluir">excluir</a></td>
 			    </tr>
 			  </c:forEach>
 			  </tbody>

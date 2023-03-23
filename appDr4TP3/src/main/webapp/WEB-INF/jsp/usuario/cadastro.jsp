@@ -29,7 +29,22 @@
 				<label>E-mail:</label>
 				<input type="email" name="email" value="" placeholder="Ex: fulano@gmail.com" class="form-control">
 			</div>
-
+			
+			<div class="form-group">
+				<label>Telefone:</label>
+				<input type="text" name="telefone" value="" placeholder="Ex: 21 99999-8888" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>CEP:</label>
+				<input type="text" name="cep" value="" placeholder="Ex: 24000-000" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>Endereco:</label>
+				<input type="text" name="endereco" value="" placeholder="Ex: Rua x" class="form-control">
+			</div>
+			
 			<button type="submit">Cadastrar</button>
 		</form>
 	</div>

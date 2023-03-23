@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 
 @Entity
@@ -24,12 +25,18 @@ public class Usuario {
 	private String telefone;
 	private String cep;
 	private String endereco;
+	//@OneToOne
+	//@JoinColumn(name = "idEndereco")
+	//private Endereco endereco;
+	
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -66,6 +73,5 @@ public class Usuario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
 		
 }

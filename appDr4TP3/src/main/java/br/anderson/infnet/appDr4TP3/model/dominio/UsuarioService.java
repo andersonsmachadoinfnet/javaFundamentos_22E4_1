@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.anderson.infnet.appDr4TP3.API.ServicoDeCep;
+
 @Service
 public class UsuarioService {
 	
@@ -16,6 +18,16 @@ public class UsuarioService {
 	}
 
 	public Usuario incluir(Usuario usuario) {
+		Endereco endereco;
+		try {
+			endereco = ServicoDeCep.buscaEnderecoPelo(usuario.getCep());
+			System.out.println(endereco);
+			usuario.setEndereco(endereco.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return usuarioRepository.save(usuario);
 	}
 	

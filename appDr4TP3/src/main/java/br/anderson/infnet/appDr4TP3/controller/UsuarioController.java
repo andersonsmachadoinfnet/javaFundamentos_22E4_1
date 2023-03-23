@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.anderson.infnet.appDr4TP3.model.dominio.Usuario;
@@ -39,5 +40,15 @@ public class UsuarioController {
 		msg = "A inclusão do usuário "+usuario.getNome()+" foi realizada com sucesso!!!";
 		
 		return "redirect:/";
+	}
+	
+	@GetMapping(value = "/usuario/{id}/excluir")
+	public String excluir(@PathVariable Integer id) {
+		
+		usuarioService.excluir(id);
+		
+		msg = "Item removido";
+
+		return "redirect:/usuario/lista";
 	}
 }
