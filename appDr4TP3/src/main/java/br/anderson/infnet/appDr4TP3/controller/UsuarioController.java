@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import br.anderson.infnet.appDr4TP3.API.ServicoDeCep;
+import br.anderson.infnet.appDr4TP3.model.dominio.Endereco;
 import br.anderson.infnet.appDr4TP3.model.dominio.Usuario;
 import br.anderson.infnet.appDr4TP3.model.dominio.UsuarioService;
 
@@ -25,6 +27,27 @@ public class UsuarioController {
 	public String telaLista(Model model) {
 		model.addAttribute("usuarios", usuarioService.obterLista());
 		
+		model.addAttribute("mensagem", msg);
+		
+		msg = null;
+		
+		return "usuario/lista";
+	}
+	
+	@GetMapping(value = "/usuario/cep")
+	public String telaLista(Model model) {
+		
+		Endereco endereco;
+		try {
+			endereco = ServicoDeCep.buscaEnderecoPelo(usuario.getCep());
+			System.out.println(endereco);
+			usuario.setEndereco(endereco.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("endereco", endereco);
 		model.addAttribute("mensagem", msg);
 		
 		msg = null;

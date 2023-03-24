@@ -5,22 +5,19 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.6</version>
+		<version>2.7.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.anderson.infnet</groupId>
 	<artifactId>appDr4TP3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>appDr4TP1</name>
-	<description>App para demonstrar entendimentos para o TP3 da 23E1_4</description>
+	<name>appDr4TP3</name>
+	<description>App desenvolvido para os requisitos do TP3 da 23E1_4</description>
+	<packaging>war</packaging>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -39,6 +36,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.32</version>
 		</dependency>
 
 		<dependency>
