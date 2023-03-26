@@ -18,7 +18,7 @@ public class UsuarioService {
 	}
 
 	public Usuario incluir(Usuario usuario) {
-		Endereco endereco;
+		/*Endereco endereco;
 		try {
 			endereco = ServicoDeCep.buscaEnderecoPelo(usuario.getCep());
 			System.out.println(endereco);
@@ -26,7 +26,7 @@ public class UsuarioService {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		return usuarioRepository.save(usuario);
 	}

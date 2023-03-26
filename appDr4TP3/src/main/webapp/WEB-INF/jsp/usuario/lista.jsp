@@ -29,7 +29,9 @@
 			      <th>E-mail</th>
 			      <th>Telefone</th>
 			      <th>CEP</th>
-			      <th>Endereço</th>
+			      <th>Logradouro</th>
+			      <th>Bairro</th>
+			      <th>Uf</th>
 			      <th></th>
 			    </tr>
 			  </thead>
@@ -40,7 +42,9 @@
 			      <td><c:out value="${u.email}" /></td>
 			      <td><c:out value="${u.telefone}" /></td>
 			      <td><c:out value="${u.cep}" /></td>
-			      <td><c:out value="${u.endereco}" /></td>
+			      <td><c:out value="${u.logradouro}" /></td>
+			      <td><c:out value="${u.bairro}" /></td>
+			      <td><c:out value="${u.uf}" /></td>
 			      <td><a href="/usuario/${u.id}/excluir">excluir</a></td>
 			    </tr>
 			  </c:forEach>

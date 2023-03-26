@@ -12,6 +12,16 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container">
+		<c:if test="${empty usuarios}">
+			<h5>Não existem usuários cadastrados!</h5>
+			<form action="/usuario/cep" method="post">
+				<div class="form-group">
+					<label>Consulta de CEP:</label>
+					<input type="text" name="cep" value="" placeholder="Ex: 24000-000" class="form-control">
+				</div>
+				<button type="submit">Consultar</button>
+			</form>
+		</c:if>
 		<form action="/usuario/incluir" method="post">
 			<h3>Cadastro de Usuário</h3>
 		
@@ -41,8 +51,28 @@
 			</div>
 			
 			<div class="form-group">
-				<label>Endereco:</label>
-				<input type="text" name="endereco" value="" placeholder="Ex: Rua x" class="form-control">
+				<label>logradouro:</label>
+				<input type="text" name="logradouro" value="${endereco.logradouro}" placeholder="Ex: Rua x" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>Bairro:</label>
+				<input type="text" name="bairro" value="${endereco.bairro}" placeholder="Cascadura" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>Localidade:</label>
+				<input type="text" name="localidade" value="${endereco.localidade}" placeholder="centro..." class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>Complemento:</label>
+				<input type="text" name="complemento" value="${endereco.complemento}" placeholder="Apto, casa xxx" class="form-control">
+			</div>
+			
+			<div class="form-group">
+				<label>UF:</label>
+				<input type="text" name="uf" value="${endereco.uf}" placeholder="RJ, SP..." class="form-control">
 			</div>
 			
 			<button type="submit">Cadastrar</button>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.anderson.infnet.appDr4TP3.API.ServicoDeCep;
 import br.anderson.infnet.appDr4TP3.model.dominio.Endereco;
@@ -14,12 +15,15 @@ import br.anderson.infnet.appDr4TP3.model.dominio.UsuarioService;
 
 @Controller
 public class UsuarioController {
+	
 	@Autowired
 	private UsuarioService usuarioService;
 	private String msg;
+	private Endereco endereco;
 	
 	@GetMapping(value = "/usuario")
-	public String telaCadastro() {
+	public String telaCadastro(Model model) {
+		model.addAttribute("endereco", endereco);
 		return "usuario/cadastro";
 	}
 
@@ -34,25 +38,24 @@ public class UsuarioController {
 		return "usuario/lista";
 	}
 	
-	@GetMapping(value = "/usuario/cep")
-	public String telaLista(Model model) {
+	@PostMapping(value = "/usuario/cep")
+	public String consultaCEP(Model model, @RequestParam String cep) {
 		
-		Endereco endereco;
+		//Endereco endereco;
 		try {
-			endereco = ServicoDeCep.buscaEnderecoPelo(usuario.getCep());
+			endereco = ServicoDeCep.buscaEnderecoPelo(cep);
 			System.out.println(endereco);
-			usuario.setEndereco(endereco.toString());
+			//usuario.setEndereco(endereco.toString());
+			model.addAttribute("endereco", endereco);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("endereco", endereco);
 		model.addAttribute("mensagem", msg);
-		
 		msg = null;
 		
-		return "usuario/lista";
+		return "redirect:/usuario";
 	}
 
 	@PostMapping(value = "/usuario/incluir")
