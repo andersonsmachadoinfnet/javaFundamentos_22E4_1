@@ -3,6 +3,17 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import java.util.ArrayList;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
@@ -12,16 +23,41 @@ import br.anderson.infnet.appclinica.model.exceptions.ProcedimentoTipoInvalidoEx
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
+@Entity
+@Table(name = "TProntuario")
 public class Prontuario implements IArquivoTxt_linha {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private                int id;
 	private             String descricao;
 	private            boolean web;
 	private      LocalDateTime data;
+	
+	@OneToOne(cascade = CascadeType.DETACH) //obriga ter um paciente para ter um protuario
+	@JoinColumn(name = "idPaciente")
 	private           Paciente paciente;
+	
+	@ManyToMany(cascade = CascadeType.DETACH)
 	private List<Procedimento> procedimentos;
 	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
+
 	public Prontuario() {
+		
 		data      = LocalDateTime.now();
 		descricao = Constantes.PRONTUARIO_DESCRICAO;
 	}

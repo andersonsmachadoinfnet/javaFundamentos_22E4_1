@@ -16,20 +16,12 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
-
-
 @Service
 public class AmazonClient {
-
     private AmazonS3 s3client;
-
-    //@Value("${amazonProperties.endpointUrl}")
     private String endpointUrl = "https://andersonbucketinfnet.s3.amazonaws.com";
-    //@Value("${amazonProperties.bucketName}")
     private String bucketName = "andersonbucketinfnet";
-    //@Value("${amazonProperties.accessKey}")
     private String accessKey = "";
-    //@Value("${amazonProperties.secretKey}")
     private String secretKey = "";
   
     @PostConstruct

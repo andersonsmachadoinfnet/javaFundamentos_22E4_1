@@ -3,6 +3,17 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
@@ -10,15 +21,58 @@ import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 
+@Entity
+@Table(name = "TProcedimento")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Procedimento implements IArquivoTxt_linha  {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private              int id;
 	private ProcedimentoTipo tipo;
 	private           String descricao;
 	private            float valor;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
+	@ManyToMany(mappedBy = "procedimentos")
+	private List<Prontuario> prontuarios; 
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public List<Prontuario> getProntuarios() {
+		return prontuarios;
+	}
+
+	public void setProntuarios(List<Prontuario> prontuarios) {
+		this.prontuarios = prontuarios;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setTipo(ProcedimentoTipo tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
+	
+	public Procedimento() {
+		
+	}
+
 	public Procedimento(ProcedimentoTipo pTipo, String pDescricao, float pValor) 
 		   throws ValorInvalidoException, DescricaoInvalidaException {
+		this();
 		this.tipo      = pTipo;
 		this.descricao = pDescricao;
 		this.valor     = pValor;
@@ -29,6 +83,7 @@ public abstract class Procedimento implements IArquivoTxt_linha  {
 	
 	protected Procedimento(String pLinha) 
 			throws ValorInvalidoException, DescricaoInvalidaException {
+		this();
 		setLinha(pLinha);
 		checaSeValidoOuGeraErro();
 	};

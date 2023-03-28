@@ -34,6 +34,9 @@
 	          <a class="nav-link active" aria-current="page" href="/paciente/lista">Pacientes</a>
 	        </li>
 	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="/prontuario/lista">Prontuários</a>
+	        </li>
+	        <li class="nav-item">
 	          <a class="nav-link inactive" aria-current="page" href="#">Sobre nós</a>
 	        </li>
 	        <li class="nav-item">

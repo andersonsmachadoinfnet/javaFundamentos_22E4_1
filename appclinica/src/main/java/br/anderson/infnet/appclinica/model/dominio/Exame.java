@@ -3,14 +3,23 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
 import br.anderson.infnet.appclinica.model.auxiliar.PacienteTipo;
 import br.anderson.infnet.appclinica.model.auxiliar.ProcedimentoTipo;
 import br.anderson.infnet.appclinica.model.exceptions.DescricaoInvalidaException;
 import br.anderson.infnet.appclinica.model.exceptions.ValorInvalidoException;
 
+@Entity
+@Table(name = "TExame")
 public class Exame extends Procedimento {
 	private String resultado;
+	
+	public Exame() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Exame(String descricao, float valor) 
 		   throws ValorInvalidoException, DescricaoInvalidaException {

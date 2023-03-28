@@ -32,6 +32,30 @@ public class Usuario implements IArquivoTxt_linha  {
 	@JoinColumn(name = "id")
 	private List<Paciente> pacientes;
 	
+	@OneToMany
+	@JoinColumn(name = "idProntuario")
+	private List<Prontuario> prontuario;
+	
+	@OneToMany
+	@JoinColumn(name = "idProcedimento")
+	private List<Procedimento> procedimento;
+	
+	public List<Procedimento> getProcedimento() {
+		return procedimento;
+	}
+
+	public void setProcedimento(List<Procedimento> procedimento) {
+		this.procedimento = procedimento;
+	}
+
+	public List<Prontuario> getProntuario() {
+		return prontuario;
+	}
+
+	public void setProntuario(List<Prontuario> prontuario) {
+		this.prontuario = prontuario;
+	}
+
 	public Usuario() {
 	}
 	

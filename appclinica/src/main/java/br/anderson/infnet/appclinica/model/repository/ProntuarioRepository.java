@@ -1,32 +1,15 @@
 package br.anderson.infnet.appclinica.model.repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import br.anderson.infnet.appclinica.model.dominio.Prontuario;
 
-public class ProntuarioRepository {
-	private static Integer id = 1;
-	private static Map<Integer, Prontuario> prontuarios = new HashMap<Integer, Prontuario>();
-
-	public static boolean incluir(Prontuario prontuario) {
-		prontuario.setId(id++);
-		try {
-			prontuarios.put(prontuario.getId(), prontuario);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-		
-	}
-
-	public static Prontuario excluir(Integer key) {
-		return prontuarios.remove(key);
-	}
-
-	public static Collection<Prontuario> obterLista(){
-		return prontuarios.values();
-	}
-
+@Repository
+public interface ProntuarioRepository extends CrudRepository<Prontuario, Integer>  {
+	@Query("from Prontuario p where p.usuario.id = :userId")
+	List<Prontuario> obterLista(Integer userId);
 }
