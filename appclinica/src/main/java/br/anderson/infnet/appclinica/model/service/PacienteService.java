@@ -3,6 +3,8 @@ package br.anderson.infnet.appclinica.model.service;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.anderson.infnet.appclinica.model.dominio.Paciente;
@@ -30,7 +32,7 @@ public class PacienteService {
 	}
 	
 	public Collection<Paciente> obterLista(Usuario usuario){
-		return (Collection<Paciente>) repository.obterLista(usuario.getUserId());
+		return (Collection<Paciente>) repository.obterLista(usuario.getId(), Sort.by(Direction.ASC, "nome"));
 		//return repository.obterLista();
 	}
 

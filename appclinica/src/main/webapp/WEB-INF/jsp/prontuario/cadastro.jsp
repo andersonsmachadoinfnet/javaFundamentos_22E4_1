@@ -34,6 +34,37 @@
 <!-- 				<input type="text" name="data" value="16/03/2023" class="form-control"> -->
 <!-- 			</div> -->
 			
+			<div class="form-group">
+				<c:if test="${not empty pacientes}">
+					<label>Pacientes:</label>
+					<select name="paciente.id" class="form-control">
+						<c:forEach var="p" items="${pacientes}">
+							<option value="${p.id}">${p.nome}</option>
+						</c:forEach>
+					</select>
+				</c:if>
+				<c:if test="${empty pacientes}">
+					<c:set var="botao" value="disabled"/>
+					<label>Não existem pacientes cadastrados!</label>
+				</c:if>
+			</div>
+			
+			<div class="form-group">
+				<c:if test="${not empty procedimentos}">
+					<label>Procedimentos:</label>
+				    <c:forEach var="p" items="${procedimentos}">
+				    <div class="form-check">
+				      <label class="form-check-label">
+			        		<input type="checkbox" name="procedimentos" value="${p.id}" class="form-check-input"> ${p.descricao}. Valor: R$ ${p.valor}
+				      </label>
+				    </div>
+				    </c:forEach>
+				</c:if>
+				<c:if test="${empty procedimentos}">
+					<c:set var="botao" value="disabled"/>
+					<label>Não existem procedimentos cadastrados!</label>
+				</c:if>
+			</div>
 			
 			<button type="submit">Cadastrar</button>
 		</form>

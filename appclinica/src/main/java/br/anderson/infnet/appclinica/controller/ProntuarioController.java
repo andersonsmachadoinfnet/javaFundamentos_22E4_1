@@ -10,18 +10,26 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.anderson.infnet.appclinica.model.dominio.Prontuario;
 import br.anderson.infnet.appclinica.model.dominio.Usuario;
+import br.anderson.infnet.appclinica.model.service.PacienteService;
+import br.anderson.infnet.appclinica.model.service.ProcedimentoService;
 import br.anderson.infnet.appclinica.model.service.ProntuarioService;
 
 @Controller
 public class ProntuarioController {
 
 	@Autowired
-	private ProntuarioService service;
+	private ProntuarioService   service;
+	@Autowired
+	private PacienteService     pacienteService;
+	@Autowired
+	private ProcedimentoService procedimentoService;
 
 	private String msg;
 
 	@GetMapping(value = "/prontuario")
-	public String telaCadastro() {
+	public String telaCadastro(Model model, @SessionAttribute("usuario") Usuario usuario) {
+		model.addAttribute("pacientes", pacienteService.obterLista(usuario));
+		model.addAttribute("procedimentos", procedimentoService.obterLista(/*usuario*/));
 		return "prontuario/cadastro";
 	}	
 

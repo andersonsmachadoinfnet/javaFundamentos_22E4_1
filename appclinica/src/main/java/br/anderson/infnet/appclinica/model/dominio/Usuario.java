@@ -3,6 +3,7 @@ package br.anderson.infnet.appclinica.model.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,20 +24,29 @@ import br.anderson.infnet.appclinica.model.interfaces.IArquivoTxt_linha;
 public class Usuario implements IArquivoTxt_linha  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private    int userId;
+	private    int id;
 	private String nome;
 	private String senha;
 	private String email;
+	private    int tipo; //0=Administrador;1=Geral
 	
-	@OneToMany
-	@JoinColumn(name = "id")
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JoinColumn(name = "idPaciente")
 	private List<Paciente> pacientes;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name = "idProntuario")
 	private List<Prontuario> prontuario;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JoinColumn(name = "idProcedimento")
 	private List<Procedimento> procedimento;
 	
@@ -61,7 +71,7 @@ public class Usuario implements IArquivoTxt_linha  {
 	
 	public Usuario(String nome, String email, String senha) {
 		this();
-		this.setUserId(-1);
+		this.setId(-1);
 		this.setNome(nome);
 		this.setEmail(email);
 		this.setSenha(senha);
@@ -75,21 +85,21 @@ public class Usuario implements IArquivoTxt_linha  {
 		return String.format("Usuário: %s (%s) [%s]", nome, email, getUserIdLabel());
 	}
 	
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
 	
 	public String getUserIdLabel( ) {
-		if (this.userId==-1) {
+		if (this.id==-1) {
 			return "Sem identificador!";
 		}
 		else {
-			return String.valueOf(this.userId);
+			return String.valueOf(this.id);
 		}
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -138,7 +148,8 @@ public class Usuario implements IArquivoTxt_linha  {
 		List<String> lRet;
 		lRet = new ArrayList<String>();
 		lRet.add(this.getPrefixo() + Constantes.SEPARADOR +
-				 this.userId + Constantes.SEPARADOR +
+				 this.id + Constantes.SEPARADOR +
+				 this.tipo + Constantes.SEPARADOR +
 				 this.nome + Constantes.SEPARADOR +
 				 this.senha + Constantes.SEPARADOR +
 				 this.email + Constantes.SEPARADOR); 
@@ -150,10 +161,11 @@ public class Usuario implements IArquivoTxt_linha  {
 	public void setLinha(String pLinha) throws ValorInvalidoException, DescricaoInvalidaException,
 			ProcedimentoTipoInvalidoException, CampoRequeridoNaoInformado {
 		String[] lCampos = pLinha.split(Constantes.SEPARADOR);
-		this.userId= Integer.valueOf(lCampos[1]);
-		this.nome  = lCampos[2];
-		this.senha = lCampos[3];
-		this.email = lCampos[4];
+		this.id    = Integer.valueOf(lCampos[1]);
+		this.tipo  = Integer.valueOf(lCampos[2]);
+		this.nome  = lCampos[3];
+		this.senha = lCampos[4];
+		this.email = lCampos[5];
 	}
 	
 }

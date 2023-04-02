@@ -42,9 +42,9 @@ public class MedicamentoController {
 	@GetMapping(value = "/medicamento/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
 		
-		Medicamento medicamento = medicamentoService.excluir(id);
+		/*Medicamento medicamento = */medicamentoService.excluir(id);
 		
-		mensagem = String.format("Item %s removido", medicamento.getDescricao());
+		mensagem = "Item %s removido";
 
 		return "redirect:/medicamento/lista";
 	}

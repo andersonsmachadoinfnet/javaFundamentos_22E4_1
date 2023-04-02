@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.anderson.infnet.appclinica.model.auxiliar.Constantes;
@@ -31,7 +33,18 @@ public class Paciente implements IArquivoTxt_linha {
 	@ManyToOne
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idEndereco")
+	private Endereco endereco;
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public Paciente() {
 	}
 	
@@ -147,7 +160,7 @@ public class Paciente implements IArquivoTxt_linha {
 				 this.cpf + Constantes.SEPARADOR +
 				 this.email + Constantes.SEPARADOR +
 				 this.dtNasc.format(Constantes.FMT_DATE_BR())+Constantes.SEPARADOR +
-				 this.usuario.getUserId()); 
+				 this.usuario.getId()); 
 		return lRet;
 	}
 
@@ -160,7 +173,7 @@ public class Paciente implements IArquivoTxt_linha {
 		this.email = lCampos[4];
 		this.dtNasc= LocalDate.parse(lCampos[5], Constantes.FMT_DATE_BR());
 		Usuario lUsuario = new Usuario();
-		lUsuario.setUserId(Integer.parseInt(lCampos[6]));
+		lUsuario.setId(Integer.parseInt(lCampos[6]));
 		this.usuario = lUsuario;
 		//todo: ver depois this.usuario= UsuarioRepository.
 	}

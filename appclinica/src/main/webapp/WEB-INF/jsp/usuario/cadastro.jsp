@@ -29,6 +29,20 @@
 				<label>E-mail:</label>
 				<input type="email" name="email" value="" placeholder="Ex: fulano@gmail.com" class="form-control">
 			</div>
+			
+			<div class="form-group">						
+				<label>Tipo:</label>			
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input type="radio" name="tipo" value="1" class="form-check-input" > Padrão
+				  </label>
+				</div>			
+				<div class="form-check">
+				  <label class="form-check-label">
+				    <input type="radio" name="tipo" value="0" checked class="form-check-input"> Administrador
+				  </label>
+				</div>			
+			</div>
 
 			<button type="submit">Cadastrar</button>
 		</form>

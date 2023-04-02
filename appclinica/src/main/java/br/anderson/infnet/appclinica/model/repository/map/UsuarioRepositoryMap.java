@@ -14,9 +14,9 @@ public class UsuarioRepositoryMap {
 	private static Map<Integer, Usuario> Usuarios = new HashMap<Integer, Usuario>();
 
 	public boolean incluir(Usuario usuario) {
-		usuario.setUserId(id++);
+		usuario.setId(id++);
 		try {
-			Usuarios.put(usuario.getUserId(), usuario);
+			Usuarios.put(usuario.getId(), usuario);
 			return true;
 		} catch (Exception e) {
 			return false;

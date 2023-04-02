@@ -28,7 +28,9 @@
 			      <th>Nome</th>
 			      <th>E-mail</th>
 			      <th>Pacientes</th>
-			      <th></th>
+			      <c:if test="${u.tipo}=0">
+			      	<th></th>
+			      </c:if>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -37,7 +39,9 @@
 			      <td><c:out value="${u.nome}" /></td>
 			      <td><c:out value="${u.email}" /></td>
 			      <td><c:out value="${u.pacientes.size()}" /></td>
-			      <td><a href="/usuario/${u.userId}/excluir">excluir</a></td>
+			      <c:if test="${u.tipo}=0">
+			      	<td><a href="/usuario/${u.id}/excluir">excluir</a></td>
+			      </c:if>
 			    </tr>
 			  </c:forEach>
 			  </tbody>

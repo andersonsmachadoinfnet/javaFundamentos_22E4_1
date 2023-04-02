@@ -1,34 +1,14 @@
 package br.anderson.infnet.appclinica.model.repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
-import br.anderson.infnet.appclinica.model.dominio.Cirurgia;
+import br.anderson.infnet.appclinica.model.dominio.Cirurgia	;
 
-@Component
-public class CirurgiaRepository {
-	private static Integer id = 1;
-	private static Map<Integer, Cirurgia> Cirurgias = new HashMap<Integer, Cirurgia>();
-
-	public boolean incluir(Cirurgia cirurgia) {
-		cirurgia.setId(id++);
-		try {
-			Cirurgias.put(cirurgia.getId(), cirurgia);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-		
-	}
-
-	public Cirurgia excluir(Integer key) {
-		return Cirurgias.remove(key);
-	}
-
-	public Collection<Cirurgia> obterLista(){
-		return Cirurgias.values();
-	}
+public interface CirurgiaRepository  extends CrudRepository<Cirurgia, Integer>  {
+	@Query("from Cirurgia c where c.usuario.id = :userId")
+	List<Cirurgia> obterLista(Integer userId, Sort sort);
 }

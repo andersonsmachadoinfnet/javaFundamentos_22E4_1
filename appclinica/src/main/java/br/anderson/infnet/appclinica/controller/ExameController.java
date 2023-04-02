@@ -41,9 +41,9 @@ public class ExameController {
 	@GetMapping(value = "/exame/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
 		
-		Exame exame = exameService.excluir(id);
+		/*Exame exame = */exameService.excluir(id);
 		
-		mensagem = String.format("Item %s removido", exame.getDescricao());
+		mensagem = "Item removido";
 
 		return "redirect:/exame/lista";
 	}

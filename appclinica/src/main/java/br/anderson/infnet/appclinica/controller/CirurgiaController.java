@@ -41,9 +41,9 @@ public class CirurgiaController {
 	@GetMapping(value = "/cirurgia/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
 		
-		Cirurgia cirurgia = cirurgiaService.excluir(id);
+		/*Cirurgia cirurgia = */cirurgiaService.excluir(id);
 		
-		mensagem = String.format("Item %s removido", cirurgia.getDescricao());
+		mensagem = "Item removido";
 
 		return "redirect:/cirurgia/lista";
 	}
