@@ -27,7 +27,7 @@ public class ProcedimentoService {
 	}
 
 	public Collection<Procedimento> obterLista(){
-		return (Collection<Procedimento>) repository.findAll();
+		return (Collection<Procedimento>) repository.obterLista(Sort.by(Direction.ASC, "descricao"));
 		//return repository.obterLista();
 	}
 	

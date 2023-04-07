@@ -27,7 +27,7 @@ public class ProntuarioService {
 	}
 
 	public Collection<Prontuario> obterLista(){
-		return (Collection<Prontuario>) repository.findAll();
+		return (Collection<Prontuario>) repository.obterLista(Sort.by(Direction.ASC, "descricao"));
 		//return repository.obterLista();
 	}
 	

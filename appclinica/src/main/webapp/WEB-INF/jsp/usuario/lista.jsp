@@ -17,7 +17,7 @@
 
 			<button type="submit">Novo</button>
 		</form>
-
+		
 		<c:if test="${empty usuarios}">
 			<h5>Não existem usuários cadastrados!</h5>
 		</c:if>
@@ -28,7 +28,7 @@
 			      <th>Nome</th>
 			      <th>E-mail</th>
 			      <th>Pacientes</th>
-			      <c:if test="${u.tipo}=0">
+			      <c:if test="${usuario.tipo==0 && usuario.id!=u.id}">
 			      	<th></th>
 			      </c:if>
 			    </tr>
@@ -39,7 +39,7 @@
 			      <td><c:out value="${u.nome}" /></td>
 			      <td><c:out value="${u.email}" /></td>
 			      <td><c:out value="${u.pacientes.size()}" /></td>
-			      <c:if test="${u.tipo}=0">
+			      <c:if test="${usuario.tipo==0 && usuario.id!=u.id}">
 			      	<td><a href="/usuario/${u.id}/excluir">excluir</a></td>
 			      </c:if>
 			    </tr>

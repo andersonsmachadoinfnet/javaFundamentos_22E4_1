@@ -59,7 +59,6 @@ public class PacienteController {
 	
 	@GetMapping(value = "/paciente/lista")
 	public String telaLista(Model model, @SessionAttribute("usuario") Usuario usuario) {
-		mensagem = "teste";
 		model.addAttribute("pacientes", pacienteService.obterLista(usuario));
 		model.addAttribute("mensagem", mensagem);
 		mensagem = null;
@@ -69,9 +68,13 @@ public class PacienteController {
 	@GetMapping(value = "/paciente/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
 		
-		/*Paciente paciente =*/ pacienteService.excluir(id);
-		
-		mensagem = "Item removido";// String.format("Item %s removido", paciente.getNome());
+		try {
+			/*Paciente paciente =*/ 
+			pacienteService.excluir(id);
+			mensagem = "Item removido";// String.format("Item %s removido", paciente.getNome());
+		} catch (Exception e) {
+			mensagem = "Não foi possível remover o solicitante!";
+		}
 
 		return "redirect:/paciente/lista";
 	}

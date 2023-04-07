@@ -12,6 +12,12 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container">
+		<c:if test="${not empty mensagem}">
+			<div class="alert alert-danger" role="alert">
+			  ${mensagem} 
+			</div>
+		</c:if>
+		
 		<form action="/paciente" method="get">
 			<h3>Listagem de pacientes:</h3>
 
@@ -30,7 +36,9 @@
 			      <th>Email</th>
 			      <th>DtNasc</th>
 			      <th>Usuario</th>
-			      <th></th>
+			      <c:if test="${usuario.tipo==0}">
+			      	<th></th>
+			      </c:if>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -41,7 +49,9 @@
 			      <td><c:out value="${u.email}" /></td>
 			      <td><c:out value="${u.dtNasc}" /></td>
 			      <td><c:out value="${u.usuario.nome}" /></td>
-			      <td><a href="/paciente/${u.id}/excluir">excluir</a></td>
+			      <c:if test="${usuario.tipo==0}">
+			      	<td><a href="/paciente/${u.id}/excluir">excluir</a></td>
+			      </c:if>
 			    </tr>
 			  </c:forEach>
 			  </tbody>

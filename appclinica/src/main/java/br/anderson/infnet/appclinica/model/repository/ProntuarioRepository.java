@@ -13,4 +13,7 @@ import br.anderson.infnet.appclinica.model.dominio.Prontuario;
 public interface ProntuarioRepository extends CrudRepository<Prontuario, Integer>  {
 	@Query("from Prontuario p where p.usuario.id = :userId")
 	List<Prontuario> obterLista(Integer userId , Sort sort);
+	
+	@Query("from Prontuario p")
+	List<Prontuario> obterLista(Sort sort);
 }

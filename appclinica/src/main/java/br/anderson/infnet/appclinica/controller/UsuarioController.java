@@ -49,11 +49,14 @@ public class UsuarioController {
 	
 	@GetMapping(value = "/usuario/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
-		
-		//Usuario usuario = usuarioService.excluir(id);
-		usuarioService.excluir(id);
-		mensagem = "Usuário removido";
-		//mensagem = String.format("Usuário %s removido", usuario.getNome());
+		try {
+			//Usuario usuario = usuarioService.excluir(id);
+			usuarioService.excluir(id);
+			mensagem = "Usuário removido";
+			//mensagem = String.format("Usuário %s removido", usuario.getNome());
+		} catch (Exception e) {
+			mensagem = "Não foi possível remover o usuário!";
+		}
 
 		return "redirect:/usuario/lista";
 	}

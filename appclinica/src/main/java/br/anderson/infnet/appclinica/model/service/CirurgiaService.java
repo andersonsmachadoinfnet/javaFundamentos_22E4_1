@@ -25,7 +25,7 @@ public class CirurgiaService {
 	}
 
 	public Collection<Cirurgia> obterLista(){
-		return (Collection<Cirurgia>)repository.findAll();
+		return (Collection<Cirurgia>)repository.obterLista(Sort.by(Direction.ASC, "descricao"));
 	}
 	
 	public Collection<Cirurgia> obterLista(Usuario usuario){

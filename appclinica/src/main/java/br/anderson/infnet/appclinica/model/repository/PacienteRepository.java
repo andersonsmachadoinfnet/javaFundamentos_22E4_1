@@ -13,4 +13,7 @@ import br.anderson.infnet.appclinica.model.dominio.Paciente;
 public interface PacienteRepository extends CrudRepository<Paciente, Integer> {
 	@Query("from Paciente s where s.usuario.id = :userId")
 	List<Paciente> obterLista(Integer userId, Sort sort);
+	
+	@Query("from Paciente s")
+	List<Paciente> obterLista(Sort sort);
 }

@@ -12,6 +12,11 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	<div class="container">
+		<c:if test="${not empty mensagem}">
+			<div class="alert alert-danger" role="alert">
+			  ${mensagem} 
+			</div>
+		</c:if>
 		<form action="/prontuario" method="get">
 			<h3>Listagem de prontuários:</h3>
 
@@ -31,7 +36,9 @@
 			      <th>Data</th>
 			      <th>Paciente</th>
 			      <th>Procedimentos</th>
-			      <th></th>
+			      <c:if test="${usuario.tipo==0}">
+			      	<th></th>
+			      </c:if>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -43,7 +50,9 @@
 			      <td><c:out value="${u.data}" /></td>
 			      <td><c:out value="${u.paciente.nome}" /></td>
 			      <td><c:out value="${u.procedimentos.size()}" /></td>
-			      <td><a href="/prontuario/${u.id}/excluir">excluir</a></td>
+			      <c:if test="${usuario.tipo==0}">
+			      	<td><a href="/prontuario/${u.id}/excluir">excluir</a></td>
+			      </c:if>
 			    </tr>
 			  </c:forEach>
 			  </tbody>

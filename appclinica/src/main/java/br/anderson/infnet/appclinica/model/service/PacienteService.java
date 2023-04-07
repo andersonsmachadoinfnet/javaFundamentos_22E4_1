@@ -1,6 +1,7 @@
 package br.anderson.infnet.appclinica.model.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -20,6 +21,11 @@ public class PacienteService {
 		return repository.save(item);
 		//return repository.incluir(item);
 	}
+	
+	public Optional<Paciente> ler(Integer key) {
+		return repository.findById(key);
+	}
+	
 
 	public void excluir(Integer key) {
 		repository.deleteById(key);
@@ -27,7 +33,7 @@ public class PacienteService {
 	}
 
 	public Collection<Paciente> obterLista(){
-		return (Collection<Paciente>) repository.findAll();
+		return (Collection<Paciente>) repository.obterLista(Sort.by(Direction.ASC, "nome"));
 		//return repository.obterLista();
 	}
 	

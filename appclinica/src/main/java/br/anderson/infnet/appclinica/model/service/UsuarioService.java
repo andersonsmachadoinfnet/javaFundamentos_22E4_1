@@ -1,10 +1,14 @@
 package br.anderson.infnet.appclinica.model.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import br.anderson.infnet.appclinica.model.dominio.Paciente;
 import br.anderson.infnet.appclinica.model.dominio.Usuario;
 import br.anderson.infnet.appclinica.model.repository.UsuarioRepository;
 
@@ -17,6 +21,10 @@ public class UsuarioService {
 		return repository.autenticacao(usuario.getEmail(), usuario.getSenha());
 	}
 	
+	public Optional<Usuario> ler(Integer key) {
+		return repository.findById(key);
+	}
+	
 	public Usuario incluir(Usuario usuario) {
 		return repository.save(usuario); // incluir
 	}
@@ -26,7 +34,7 @@ public class UsuarioService {
 	}
 
 	public Collection<Usuario> obterLista(){
-		return (Collection<Usuario>) repository.findAll();
+		return (Collection<Usuario>) repository.obterLista(Sort.by(Direction.ASC, "nome"));
 		//return repository.obterLista();
 	}
 }

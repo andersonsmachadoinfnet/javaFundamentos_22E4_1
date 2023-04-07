@@ -26,7 +26,7 @@ public class ExameService {
 	}
 
 	public Collection<Exame> obterLista(){
-		return (Collection<Exame>)repository.findAll();
+		return repository.obterLista(Sort.by(Direction.ASC, "descricao"));
 	}
 	
 	public Collection<Exame> obterLista(Usuario usuario){

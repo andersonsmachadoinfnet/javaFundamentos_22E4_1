@@ -32,7 +32,6 @@ public class MedicamentoController {
 	
 	@GetMapping(value = "/medicamento/lista")
 	public String telaLista(Model model) {
-		mensagem = "teste";
 		model.addAttribute("medicamentos", medicamentoService.obterLista());
 		model.addAttribute("mensagem", mensagem);
 		mensagem = null;
@@ -41,10 +40,13 @@ public class MedicamentoController {
 	
 	@GetMapping(value = "/medicamento/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
-		
-		/*Medicamento medicamento = */medicamentoService.excluir(id);
-		
-		mensagem = "Item %s removido";
+		try {
+			/*Medicamento medicamento = */
+			medicamentoService.excluir(id);
+			mensagem = "Item %s removido";
+		} catch (Exception e) {
+			mensagem = "Não foi possível remover o item!";
+		}
 
 		return "redirect:/medicamento/lista";
 	}

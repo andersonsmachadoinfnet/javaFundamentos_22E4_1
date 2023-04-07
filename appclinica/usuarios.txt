@@ -1,3 +1,4 @@
 U;1;0;JOSE;1234;jose@hotmail.com
 U;2;1;MARIA;4321;maria@hotmail.com
 U;3;1;PEDRO;1122;pedro@hotmail.com
+U;4;0;admin;1234;a@a.com

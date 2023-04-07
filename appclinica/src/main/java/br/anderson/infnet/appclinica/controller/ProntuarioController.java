@@ -57,9 +57,13 @@ public class ProntuarioController {
 		
 	@GetMapping(value = "/prontuario/{id}/excluir")
 	public String excluir(@PathVariable Integer id) {
-		Prontuario item = service.obterPorId(id);
-		service.excluir(id);
-		msg = "A exclusão do prontuário "+item.getDescricao()+" foi realizada com sucesso!!!";
+		try {
+			Prontuario item = service.obterPorId(id);
+			service.excluir(id);
+			msg = "A exclusão do prontuário "+item.getDescricao()+" foi realizada com sucesso!!!";
+		} catch (Exception e) {
+			msg = "Não foi possível remover o prontuário!";
+		}
 		return "redirect:/prontuario/lista";
 	}
 }

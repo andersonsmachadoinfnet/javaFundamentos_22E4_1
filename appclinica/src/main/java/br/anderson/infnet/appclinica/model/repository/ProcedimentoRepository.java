@@ -13,4 +13,7 @@ import br.anderson.infnet.appclinica.model.dominio.Procedimento;
 public interface ProcedimentoRepository extends CrudRepository<Procedimento, Integer> {
 	@Query("from Procedimento p where p.usuario.id = :userId")
 	List<Procedimento> obterLista(Integer userId, Sort sort);
+	
+	@Query("from Procedimento p")
+	List<Procedimento> obterLista(Sort sort);
 }

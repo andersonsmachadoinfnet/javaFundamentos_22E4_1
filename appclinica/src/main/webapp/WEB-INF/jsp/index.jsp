@@ -18,11 +18,12 @@
 	
         <div class="container">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong>Fase: </strong>Site em construção, feature 7 do Projeto de bloco: Desenvolvimento Java.</br>
-		  Clique em Cadastrar Usuários.
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>
+		  <strong>Fase: </strong>Site final para apresentação das disciplinas:
+		  <ul>
+		  	<li>22E4_5-Projeto de Bloco: Desenvolvimento Java; Prof. Elberth</li>
+		  	<li>23E1_4-Desenvolvimento de Serviços em Nuvem com Java; Prof. Rubens</li>
+		  </ul> 
+		  
 		</div>
         
         <div class="row d-flex align-items-center">
@@ -32,11 +33,17 @@
                   Mussum Ipsum, cacilds vidis litro abertis. Casamentiss faiz malandris se pirulitá.Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio.Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.Copo furadis é disculpa de bebadis, arcu quam euismod magna.
                 </p>
             </div>
-            <div class="col-md-6">
-                <img src="./banner.jpg" alt="" srcset="" class="w-auto" height="320px" width="auto">
-            </div>
+            <!-- <div class="col-md-6">
+                <h2>Extras:</h2>
+		        <p>API Swagger <a href="/swagger-ui/index.html">aqui</a></p>
+		        <p>Recurso armazenado no S3 Bucket:</p>
+                <img src="https://andersonbucketinfnet.s3.amazonaws.com/foto_perfil_peq.JPG" alt="" srcset="" class="w-auto" height="120px" width="auto">
+            </div> -->
         </div>
         </div>
+        
+        
+        
     </div>
     
     <footer class="bg-light py-5">
